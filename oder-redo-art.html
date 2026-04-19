@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art — ODER × ReDo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --white: #fafaf8; --black: #111110; --gray: #8a8a85; --light: #e8e8e4; --accent: #c8b89a; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--black); font-family: 'Josefin Sans', sans-serif; font-weight: 300; letter-spacing: 0.04em; cursor: none; overflow-x: hidden; }
+.cursor { position: fixed; width: 8px; height: 8px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s, height .3s; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--black); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, opacity .3s; opacity: .5; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 32px 52px; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); }
+.nav-logo { font-family: 'EB Garamond', serif; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.5; transition: opacity .3s; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.ph-label { font-family: 'EB Garamond', serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(80,70,60,0.35); text-align: center; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* PAGE HEADER */
+.page-header {
+  padding: 180px 52px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  border-bottom: 1px solid var(--light);
+}
+
+.page-header-left {}
+
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp .8s ease .2s forwards;
+}
+
+.page-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(56px, 7vw, 100px);
+  line-height: 0.95;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp .9s ease .35s forwards;
+}
+
+.page-title em { font-style: italic; color: var(--gray); }
+
+.page-header-right {
+  padding-bottom: 8px;
+  opacity: 0;
+  animation: fadeIn .8s ease .5s forwards;
+}
+
+.page-intro {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  line-height: 2;
+  color: var(--gray);
+  max-width: 420px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  padding: 36px 52px;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  border-bottom: 1px solid var(--light);
+}
+
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-right: 8px;
+}
+
+.filter-btn {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  background: none;
+  border: none;
+  cursor: none;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color .3s, border-color .3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  color: var(--black);
+  border-bottom-color: var(--black);
+}
+
+/* MAIN GALLERY — masonry-like */
+.gallery-section {
+  padding: 80px 52px 140px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  row-gap: 60px;
+}
+
+/* Row 1 */
+.g-item-1 { grid-column: 1 / 6; }
+.g-item-2 { grid-column: 6 / 9; }
+.g-item-3 { grid-column: 9 / 13; }
+
+/* Row 2 */
+.g-item-4 { grid-column: 1 / 4; }
+.g-item-5 { grid-column: 4 / 8; }
+.g-item-6 { grid-column: 8 / 13; }
+
+/* Row 3 */
+.g-item-7 { grid-column: 1 / 7; }
+.g-item-8 { grid-column: 7 / 10; }
+.g-item-9 { grid-column: 10 / 13; }
+
+.gallery-item { position: relative; }
+
+.gallery-img {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.gallery-placeholder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+}
+
+.gallery-item:hover .gallery-placeholder { transform: scale(1.03); }
+
+/* Heights vary by item */
+.g-item-1 .gallery-placeholder { height: 560px; background: linear-gradient(150deg, #ddd8d0 0%, #c8c0b4 100%); }
+.g-item-2 .gallery-placeholder { height: 560px; background: linear-gradient(160deg, #e4e0d8 0%, #d0c8bc 100%); }
+.g-item-3 .gallery-placeholder { height: 560px; background: linear-gradient(140deg, #d4cec6 0%, #c0b8ac 100%); }
+.g-item-4 .gallery-placeholder { height: 380px; background: linear-gradient(130deg, #e0dcd4 0%, #ccc4b8 100%); }
+.g-item-5 .gallery-placeholder { height: 380px; background: linear-gradient(155deg, #d8d4cc 0%, #c4bcb0 100%); }
+.g-item-6 .gallery-placeholder { height: 380px; background: linear-gradient(145deg, #dcd8d0 0%, #c8c0b4 100%); }
+.g-item-7 .gallery-placeholder { height: 500px; background: linear-gradient(160deg, #d0ccc4 0%, #beb8b0 100%); }
+.g-item-8 .gallery-placeholder { height: 500px; background: linear-gradient(135deg, #e0dcd4 0%, #ccc6be 100%); }
+.g-item-9 .gallery-placeholder { height: 500px; background: linear-gradient(150deg, #d8d4cc 0%, #c4beb6 100%); }
+
+/* Overlay on hover */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17,17,16,0);
+  transition: background .4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+}
+
+.gallery-item:hover .gallery-overlay { background: rgba(17,17,16,0.08); }
+
+.gallery-meta {
+  padding: 16px 0 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.gallery-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.gallery-tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.gallery-year {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  grid-column: 1;
+}
+
+/* INQUIRE BAND */
+.inquire-band {
+  padding: 80px 52px;
+  border-top: 1px solid var(--light);
+  border-bottom: 1px solid var(--light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inquire-text {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.inquire-text em { font-style: italic; color: var(--gray); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border: 1px solid var(--black);
+  padding: 18px 36px;
+  transition: background .4s, color .4s, gap .3s;
+  flex-shrink: 0;
+}
+
+.btn-outline:hover { background: var(--black); color: var(--white); gap: 24px; }
+
+/* FOOTER */
+footer { padding: 80px 52px; border-top: 1px solid var(--light); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: end; }
+.footer-logo { font-family: 'EB Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; }
+.footer-tagline { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); }
+.footer-nav { display: flex; flex-direction: column; gap: 14px; list-style: none; justify-self: center; }
+.footer-nav a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .3s; }
+.footer-nav a:hover { color: var(--black); }
+.footer-right { justify-self: end; text-align: right; }
+.footer-contact a { font-family: 'EB Garamond', serif; font-size: 18px; color: var(--black); text-decoration: none; display: block; margin-bottom: 6px; transition: color .3s; }
+.footer-contact a:hover { color: var(--gray); }
+.footer-social { margin-top: 20px; display: flex; gap: 20px; justify-content: flex-end; }
+.footer-social a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .3s; }
+.footer-social a:hover { color: var(--black); }
+.footer-bottom { grid-column: 1/-1; border-top: 1px solid var(--light); padding-top: 32px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="oder-redo-home.html" class="nav-logo">ODER × ReDo</a>
+  <ul class="nav-links">
+    <li><a href="oder-redo-art.html" class="active">Art</a></li>
+    <li><a href="oder-redo-objects.html">Objects</a></li>
+    <li><a href="oder-redo-education.html">Education</a></li>
+    <li><a href="oder-redo-about.html">About</a></li>
+    <li><a href="oder-redo-contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-left">
+    <p class="page-eyebrow">Paper Art</p>
+    <h1 class="page-title">Art<br><em>Works</em></h1>
+  </div>
+  <div class="page-header-right">
+    <p class="page-intro">
+      Original paper works — lampshades, wall pieces, and sculptural forms. Each piece is handcrafted, one of a kind, and available for private or institutional acquisition.
+    </p>
+  </div>
+</header>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active">All</button>
+  <button class="filter-btn">Lampshades</button>
+  <button class="filter-btn">Wall Works</button>
+  <button class="filter-btn">Paper Objects</button>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid">
+
+    <div class="gallery-item g-item-1 reveal">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Lampshade — 01</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Folded Cone, White</span>
+        <span class="gallery-tag">Lampshade</span>
+        <span class="gallery-year">2024</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-2 reveal reveal-delay-1">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Wall Work — 02</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Surface Study No. 3</span>
+        <span class="gallery-tag">Wall Work</span>
+        <span class="gallery-year">2024</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-3 reveal reveal-delay-2">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Lampshade — 03</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Drum, Layered</span>
+        <span class="gallery-tag">Lampshade</span>
+        <span class="gallery-year">2024</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-4 reveal">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Wall Work — 04</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Field Study I</span>
+        <span class="gallery-tag">Wall Work</span>
+        <span class="gallery-year">2023</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-5 reveal reveal-delay-1">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Paper Object — 05</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Form in White</span>
+        <span class="gallery-tag">Paper Object</span>
+        <span class="gallery-year">2024</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-6 reveal reveal-delay-2">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Lampshade — 06</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Pendant, Ribbed</span>
+        <span class="gallery-tag">Lampshade</span>
+        <span class="gallery-year">2023</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-7 reveal">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Wall Work — 07</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Texture Archive</span>
+        <span class="gallery-tag">Wall Work</span>
+        <span class="gallery-year">2023</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-8 reveal reveal-delay-1">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Lampshade — 08</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Shade, Pleated</span>
+        <span class="gallery-tag">Lampshade</span>
+        <span class="gallery-year">2024</span>
+      </div>
+    </div>
+
+    <div class="gallery-item g-item-9 reveal reveal-delay-2">
+      <div class="gallery-img">
+        <div class="gallery-placeholder"><p class="ph-label">Paper Object — 09</p></div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-meta">
+        <span class="gallery-name">Vessel No. 2</span>
+        <span class="gallery-tag">Paper Object</span>
+        <span class="gallery-year">2023</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INQUIRE BAND -->
+<div class="inquire-band reveal">
+  <p class="inquire-text">
+    All works are available<br>
+    <em>for acquisition.</em>
+  </p>
+  <a href="oder-redo-contact.html" class="btn-outline">Inquire →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ODER × ReDo</div>
+    <div class="footer-tagline">Paper Art Studio</div>
+  </div>
+  <ul class="footer-nav">
+    <li><a href="oder-redo-art.html">Art</a></li>
+    <li><a href="oder-redo-objects.html">Objects</a></li>
+    <li><a href="oder-redo-education.html">Education</a></li>
+    <li><a href="oder-redo-about.html">About</a></li>
+    <li><a href="oder-redo-contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-right">
+    <div class="footer-contact">
+      <a href="mailto:studio@oderredo.com">studio@oderredo.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#">@oder.redo</a>
+      <a href="#">@redo.yourself</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ODER × ReDo — All rights reserved</p>
+    <p>Handmade in paper, built in code</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX=0, mouseY=0, ringX=0, ringY=0;
+  document.addEventListener('mousemove', e => { mouseX=e.clientX; mouseY=e.clientY; cursor.style.left=mouseX+'px'; cursor.style.top=mouseY+'px'; });
+  (function animateRing() { ringX+=(mouseX-ringX)*.12; ringY+=(mouseY-ringY)*.12; ring.style.left=ringX+'px'; ring.style.top=ringY+'px'; requestAnimationFrame(animateRing); })();
+  document.querySelectorAll('a, .gallery-item, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='52px'; ring.style.height='52px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='36px'; ring.style.height='36px'; });
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

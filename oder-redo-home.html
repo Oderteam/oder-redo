@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ODER × ReDo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #fafaf8;
+    --black: #111110;
+    --gray: #8a8a85;
+    --light: #e8e8e4;
+    --accent: #c8b89a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--black);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 52px;
+    mix-blend-mode: multiply;
+  }
+
+  .nav-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 52px 80px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: 1.02;
+    font-weight: 400;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gray);
+  }
+
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    line-height: 1.9;
+    color: var(--gray);
+    max-width: 280px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.2s forwards;
+  }
+
+  .hero-image-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #e8e4de 0%, #d4cfc8 40%, #c8c0b4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .hero-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .ph-label {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(80,70,60,0.4);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute;
+    bottom: 80px;
+    right: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: var(--light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gray);
+    animation: scrollDrop 2s ease 1.5s infinite;
+  }
+
+  /* SECTION: INTRO TEXT */
+  .intro-section {
+    padding: 140px 52px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+    border-top: 1px solid var(--light);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding-top: 6px;
+  }
+
+  .intro-text {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(22px, 2.5vw, 34px);
+    line-height: 1.55;
+    font-weight: 400;
+    max-width: 680px;
+  }
+
+  .intro-text em { font-style: italic; color: var(--gray); }
+
+  /* SECTION: WORK GRID */
+  .work-section {
+    padding: 0 52px 140px;
+  }
+
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 56px;
+    border-top: 1px solid var(--light);
+    padding-top: 40px;
+  }
+
+  .work-header h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .work-header a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .work-header a:hover { color: var(--black); }
+
+  /* GRID LAYOUT — varied */
+  .grid-asymmetric {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+
+  .grid-item { position: relative; overflow: hidden; }
+  .grid-item:nth-child(1) { grid-column: 1 / 6; grid-row: 1; }
+  .grid-item:nth-child(2) { grid-column: 6 / 9; grid-row: 1; }
+  .grid-item:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 3; }
+  .grid-item:nth-child(4) { grid-column: 1 / 4; grid-row: 2; }
+  .grid-item:nth-child(5) { grid-column: 4 / 9; grid-row: 2; }
+
+  .grid-placeholder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .grid-item:hover .grid-placeholder { transform: scale(1.02); }
+
+  .grid-item:nth-child(1) .grid-placeholder { height: 480px; background: linear-gradient(135deg, #ddd8d0 0%, #c8c0b4 100%); }
+  .grid-item:nth-child(2) .grid-placeholder { height: 480px; background: linear-gradient(160deg, #e4e0d8 0%, #d4cec6 100%); }
+  .grid-item:nth-child(3) .grid-placeholder { height: 100%; min-height: 600px; background: linear-gradient(180deg, #ccc4b8 0%, #b8b0a4 100%); }
+  .grid-item:nth-child(4) .grid-placeholder { height: 300px; background: linear-gradient(120deg, #e0dcd4 0%, #d0ccc4 100%); }
+  .grid-item:nth-child(5) .grid-placeholder { height: 300px; background: linear-gradient(140deg, #d8d4cc 0%, #c8c4bc 100%); }
+
+  .grid-caption {
+    padding: 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .grid-caption-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .grid-caption-cat {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* SECTION: CATEGORIES */
+  .categories-section {
+    padding: 100px 52px;
+    border-top: 1px solid var(--light);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--light);
+  }
+
+  .category-card {
+    background: var(--white);
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    text-decoration: none;
+    color: var(--black);
+    transition: background 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--black);
+    transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .category-card:hover::after { width: 100%; }
+  .category-card:hover { background: #f4f2ee; }
+
+  .cat-number {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gray);
+  }
+
+  .cat-image-placeholder {
+    height: 220px;
+    background: linear-gradient(140deg, #e0dcd4 0%, #ccc4b8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: transform 0.6s ease;
+  }
+
+  .category-card:hover .cat-image-placeholder { transform: scale(1.03); }
+
+  .cat-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .cat-desc {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    line-height: 1.9;
+    color: var(--gray);
+    max-width: 240px;
+  }
+
+  .cat-arrow {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--black);
+  }
+
+  .cat-arrow::after {
+    content: '→';
+    transition: transform 0.3s ease;
+  }
+
+  .category-card:hover .cat-arrow::after { transform: translateX(6px); }
+
+  /* SECTION: EDUCATION */
+  .education-section {
+    padding: 140px 52px;
+    border-top: 1px solid var(--light);
+  }
+
+  .education-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+  }
+
+  .edu-heading {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .edu-heading em { font-style: italic; color: var(--gray); }
+
+  .edu-intro {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    color: var(--gray);
+    padding-top: 8px;
+    max-width: 380px;
+  }
+
+  .edu-offerings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--light);
+  }
+
+  .edu-item {
+    padding: 48px 0 48px;
+    border-right: 1px solid var(--light);
+    padding-right: 48px;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .edu-item:not(:first-child) {
+    padding-left: 48px;
+  }
+
+  .edu-item:last-child { border-right: none; }
+
+  .edu-num {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+  }
+
+  .edu-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  .edu-text {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+    color: var(--gray);
+    flex: 1;
+  }
+
+  .edu-link {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 2px;
+    transition: border-color 0.3s, gap 0.3s;
+  }
+
+  .edu-link:hover { border-color: var(--black); gap: 16px; }
+
+  /* SECTION: ABOUT TEASER */
+  .about-section {
+    padding: 100px 52px;
+    border-top: 1px solid var(--light);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: center;
+  }
+
+  .about-image-wrap {
+    position: relative;
+    height: 560px;
+  }
+
+  .about-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #d8d4cc 0%, #c4bcb0 100%);
+  }
+
+  .about-offset-label {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--white);
+    padding: 20px 24px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border: 1px solid var(--light);
+  }
+
+  .about-content { }
+
+  .about-content .section-label { margin-bottom: 40px; }
+
+  .about-quote {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(24px, 2.5vw, 36px);
+    line-height: 1.45;
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+
+  .about-quote em { font-style: italic; color: var(--gray); }
+
+  .about-body {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    line-height: 2;
+    color: var(--gray);
+    margin-bottom: 48px;
+    max-width: 400px;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    border: 1px solid var(--black);
+    padding: 16px 32px;
+    transition: background 0.4s, color 0.4s, gap 0.3s;
+  }
+
+  .btn-outline:hover { background: var(--black); color: var(--white); gap: 24px; }
+
+  /* FOOTER */
+  footer {
+    padding: 80px 52px;
+    border-top: 1px solid var(--light);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+  }
+
+  .footer-logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .footer-tagline {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    justify-self: center;
+  }
+
+  .footer-nav a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-nav a:hover { color: var(--black); }
+
+  .footer-right {
+    justify-self: end;
+    text-align: right;
+  }
+
+  .footer-contact a {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--black);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+  .footer-contact a:hover { color: var(--gray); }
+
+  .footer-social {
+    margin-top: 24px;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+
+  .footer-social a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-social a:hover { color: var(--black); }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--light);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scrollDrop {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  /* REVEAL ON SCROLL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ODER × ReDo</a>
+  <ul class="nav-links">
+    <li><a href="#">Art</a></li>
+    <li><a href="#">Objects</a></li>
+    <li><a href="#">Education</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Paper as language</p>
+    <h1 class="hero-title">
+      Art made<br>
+      from <em>paper,</em><br>
+      for space.
+    </h1>
+    <p class="hero-sub">
+      Handcrafted lampshades, paper objects, and objects<br>
+      handcrafted in paper — by Tim, based in Israel.
+    </p>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-placeholder">
+      <p class="ph-label">Photography — Lampshade</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section">
+  <div class="section-label reveal">Studio</div>
+  <p class="intro-text reveal reveal-delay-1">
+    Paper holds memory. It bends, folds, tears — and in doing so becomes something
+    <em>entirely new.</em> ODER × ReDo is a studio working at the intersection of
+    material and idea, craft and concept.
+  </p>
+</section>
+
+<!-- WORK GRID -->
+<section class="work-section">
+  <div class="work-header reveal">
+    <h2>Selected Works</h2>
+    <a href="#">View all →</a>
+  </div>
+
+  <div class="grid-asymmetric">
+    <div class="grid-item reveal">
+      <div class="grid-placeholder"><p class="ph-label">Lampshade — 01</p></div>
+      <div class="grid-caption">
+        <span class="grid-caption-title">Folded Cone, White</span>
+        <span class="grid-caption-cat">Lampshade</span>
+      </div>
+    </div>
+    <div class="grid-item reveal reveal-delay-1">
+      <div class="grid-placeholder"><p class="ph-label">Abstract — 02</p></div>
+      <div class="grid-caption">
+        <span class="grid-caption-title">Asemic No. 7</span>
+        <span class="grid-caption-cat">Art Work</span>
+      </div>
+    </div>
+    <div class="grid-item reveal reveal-delay-2">
+      <div class="grid-placeholder"><p class="ph-label">Object — 03</p></div>
+      <div class="grid-caption">
+        <span class="grid-caption-title">Sculptural Form</span>
+        <span class="grid-caption-cat">Object</span>
+      </div>
+    </div>
+    <div class="grid-item reveal">
+      <div class="grid-placeholder"><p class="ph-label">Abstract — 04</p></div>
+      <div class="grid-caption">
+        <span class="grid-caption-title">Field Study</span>
+        <span class="grid-caption-cat">Art Work</span>
+      </div>
+    </div>
+    <div class="grid-item reveal reveal-delay-1">
+      <div class="grid-placeholder"><p class="ph-label">Lampshade — 05</p></div>
+      <div class="grid-caption">
+        <span class="grid-caption-title">Drum, Layered</span>
+        <span class="grid-caption-cat">Lampshade</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+  <a href="#" class="category-card reveal">
+    <span class="cat-number">01</span>
+    <div class="cat-image-placeholder"><p class="ph-label">Lampshades</p></div>
+    <h3 class="cat-title">Paper<br>Lampshades</h3>
+    <p class="cat-desc">Handcrafted sculptural lampshades that transform light into texture and shadow.</p>
+    <span class="cat-arrow">Explore</span>
+  </a>
+  <a href="#" class="category-card reveal reveal-delay-1">
+    <span class="cat-number">02</span>
+    <div class="cat-image-placeholder"><p class="ph-label">Art Works</p></div>
+    <h3 class="cat-title">Abstract<br>Art Works</h3>
+    <p class="cat-desc">Original paper works — lampshades, wall pieces, and objects — for collectors and interiors.</p>
+    <span class="cat-arrow">Explore</span>
+  </a>
+  <a href="#" class="category-card reveal reveal-delay-2">
+    <span class="cat-number">03</span>
+    <div class="cat-image-placeholder"><p class="ph-label">Objects</p></div>
+    <h3 class="cat-title">Sculptural<br>Objects</h3>
+    <p class="cat-desc">One-of-a-kind paper objects that occupy space with quiet presence.</p>
+    <span class="cat-arrow">Explore</span>
+  </a>
+</section>
+
+<!-- EDUCATION -->
+<section class="education-section">
+  <div class="education-header reveal">
+    <h2 class="edu-heading">Learn the<br><em>practice</em><br>of paper.</h2>
+    <p class="edu-intro">
+      Workshops, guided PDF materials, and DIY kits — for those who want to work with paper themselves. Available for individuals, studios, and institutions.
+    </p>
+  </div>
+
+  <div class="edu-offerings">
+    <div class="edu-item reveal">
+      <span class="edu-num">01</span>
+      <h3 class="edu-name">Workshops</h3>
+      <p class="edu-text">In-person sessions held in Tel Aviv and available for private booking. Beginner-friendly and tailored to your space and material interest.</p>
+      <a href="#" class="edu-link">Inquire</a>
+    </div>
+    <div class="edu-item reveal reveal-delay-1">
+      <span class="edu-num">02</span>
+      <h3 class="edu-name">PDF Guides</h3>
+      <p class="edu-text">Step-by-step digital guides for making your own paper objects at home. Immediate download, clear photography, material lists included.</p>
+      <a href="#" class="edu-link">Browse guides</a>
+    </div>
+    <div class="edu-item reveal reveal-delay-2">
+      <span class="edu-num">03</span>
+      <h3 class="edu-name">DIY Kits</h3>
+      <p class="edu-text">Pre-cut materials and tools sent to your door. Everything you need to make a specific object — no experience necessary.</p>
+      <a href="#" class="edu-link">View kits</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT TEASER -->
+<section class="about-section">
+  <div class="about-image-wrap reveal">
+    <div class="about-placeholder"></div>
+    <div class="about-offset-label">
+  </div>
+
+  <div class="about-content">
+    <p class="section-label reveal">About the studio</p>
+    <p class="about-quote reveal reveal-delay-1">
+      "Paper is the most honest material —<br>
+      it shows every decision, <em>every hesitation.</em>"
+    </p>
+    <p class="about-body reveal reveal-delay-2">
+      ODER × ReDo is the studio of Tim — artist, maker, educator. The practice moves
+      between abstract art and applied objects, always returning to paper as its central material and language.
+    </p>
+    <a href="#" class="btn-outline reveal reveal-delay-3">About Tim →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ODER × ReDo</div>
+    <div class="footer-tagline">Paper Art Studio, Israel</div>
+  </div>
+
+  <ul class="footer-nav">
+    <li><a href="#">Art</a></li>
+    <li><a href="#">Objects</a></li>
+    <li><a href="#">Education</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+  <div class="footer-right">
+    <div class="footer-contact">
+      <a href="mailto:studio@oderredo.com">studio@oderredo.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#">@oder.redo</a>
+      <a href="#">@redo.yourself</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 ODER × ReDo — All rights reserved</p>
+    <p>Handmade in paper, built in code</p>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Hover effect on links/cards
+  document.querySelectorAll('a, .grid-item, .category-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      ring.style.width = '52px';
+      ring.style.height = '52px';
+      ring.style.opacity = '0.3';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '8px';
+      cursor.style.height = '8px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

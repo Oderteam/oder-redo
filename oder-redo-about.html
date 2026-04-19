@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — ODER × ReDo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --white: #fafaf8; --black: #111110; --gray: #8a8a85; --light: #e8e8e4; --accent: #c8b89a; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--black); font-family: 'Josefin Sans', sans-serif; font-weight: 300; letter-spacing: 0.04em; cursor: none; overflow-x: hidden; }
+.cursor { position: fixed; width: 8px; height: 8px; background: var(--black); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s, height .3s; }
+.cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid var(--black); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, opacity .3s; opacity: .5; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 32px 52px; background: rgba(250,250,248,0.92); backdrop-filter: blur(12px); }
+.nav-logo { font-family: 'EB Garamond', serif; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.5; transition: opacity .3s; }
+.nav-links a:hover, .nav-links a.active { opacity: 1; }
+.ph-label { font-family: 'EB Garamond', serif; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(80,70,60,0.35); text-align: center; }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.25,.46,.45,.94), transform .9s cubic-bezier(.25,.46,.45,.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .24s; }
+.reveal-delay-3 { transition-delay: .36s; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* HERO — full width image + title overlap */
+.about-hero {
+  padding-top: 120px;
+  position: relative;
+}
+
+.hero-image-full {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #d8d4cc 0%, #bdb8b0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-full::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--white), transparent);
+}
+
+.hero-title-overlap {
+  position: absolute;
+  bottom: 0;
+  left: 52px;
+  z-index: 2;
+}
+
+.page-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(72px, 10vw, 140px);
+  font-weight: 400;
+  line-height: 0.9;
+  opacity: 0;
+  animation: fadeUp .9s ease .3s forwards;
+}
+
+.page-title em { font-style: italic; color: var(--gray); }
+
+/* INTRO SECTION */
+.about-intro {
+  padding: 80px 52px 120px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  border-bottom: 1px solid var(--light);
+}
+
+.intro-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sidebar-label {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.sidebar-portrait {
+  width: 100%;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(150deg, #ddd8d0 0%, #c4bcb0 100%);
+}
+
+.intro-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.intro-pull {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.intro-pull em { font-style: italic; color: var(--gray); }
+
+.intro-body {
+  font-size: 15px;
+  letter-spacing: 0.07em;
+  line-height: 2.1;
+  color: var(--gray);
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* PRACTICE SECTION */
+.practice-section {
+  padding: 120px 52px;
+  border-bottom: 1px solid var(--light);
+}
+
+.practice-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 80px;
+}
+
+.practice-title em { font-style: italic; color: var(--gray); }
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--light);
+}
+
+.practice-item {
+  padding: 48px 48px 48px 0;
+  border-right: 1px solid var(--light);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.practice-item:not(:first-child) { padding-left: 48px; }
+.practice-item:last-child { border-right: none; }
+
+.practice-num { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); }
+.practice-name { font-family: 'EB Garamond', serif; font-size: 24px; font-weight: 400; }
+.practice-body { font-size: 13px; letter-spacing: 0.07em; line-height: 1.9; color: var(--gray); }
+
+/* PROCESS SECTION — image + text alternating */
+.process-section {
+  padding: 0 0 120px;
+}
+
+.process-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+
+.process-row:nth-child(even) .process-img { order: 2; }
+.process-row:nth-child(even) .process-content { order: 1; }
+
+.process-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process-img-1 { background: linear-gradient(150deg, #ddd8d0 0%, #c8c0b4 100%); }
+.process-img-2 { background: linear-gradient(160deg, #e0dcd4 0%, #ccc4b8 100%); }
+
+.process-content {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid var(--light);
+}
+
+.process-label { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gray); }
+.process-heading { font-family: 'EB Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 400; line-height: 1.2; }
+.process-heading em { font-style: italic; color: var(--gray); }
+.process-body { font-size: 14px; letter-spacing: 0.07em; line-height: 2; color: var(--gray); max-width: 380px; }
+
+/* SELECTED CLIENTS / EXHIBITIONS */
+.exhibitions-section {
+  padding: 100px 52px;
+  border-top: 1px solid var(--light);
+  background: #f7f5f2;
+}
+
+.exhibitions-header {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.exhibitions-label { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gray); padding-top: 4px; }
+
+.exhibitions-title { font-family: 'EB Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 400; }
+.exhibitions-title em { font-style: italic; color: var(--gray); }
+
+.exhibitions-list {
+  border-top: 1px solid var(--light);
+}
+
+.exhibition-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 120px;
+  align-items: center;
+  gap: 40px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--light);
+  transition: background .2s;
+}
+
+.exhibition-item:hover { background: rgba(0,0,0,0.02); }
+
+.ex-year { font-size: 12px; letter-spacing: 0.15em; color: var(--gray); }
+.ex-name { font-family: 'EB Garamond', serif; font-size: 18px; font-weight: 400; }
+.ex-place { font-size: 12px; letter-spacing: 0.1em; color: var(--gray); }
+.ex-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); text-align: right; }
+
+/* CTA BAND */
+.about-cta {
+  padding: 100px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--light);
+}
+
+.cta-text { font-family: 'EB Garamond', serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 400; line-height: 1.2; }
+.cta-text em { font-style: italic; color: var(--gray); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+  text-decoration: none;
+  border: 1px solid var(--black);
+  padding: 18px 36px;
+  transition: background .4s, color .4s, gap .3s;
+  flex-shrink: 0;
+}
+.btn-outline:hover { background: var(--black); color: var(--white); gap: 24px; }
+
+/* FOOTER */
+footer { padding: 80px 52px; border-top: 1px solid var(--light); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; align-items: end; }
+.footer-logo { font-family: 'EB Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; }
+.footer-tagline { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); }
+.footer-nav { display: flex; flex-direction: column; gap: 14px; list-style: none; justify-self: center; }
+.footer-nav a { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .3s; }
+.footer-nav a:hover { color: var(--black); }
+.footer-right { justify-self: end; text-align: right; }
+.footer-contact a { font-family: 'EB Garamond', serif; font-size: 18px; color: var(--black); text-decoration: none; display: block; margin-bottom: 6px; transition: color .3s; }
+.footer-contact a:hover { color: var(--gray); }
+.footer-social { margin-top: 20px; display: flex; gap: 20px; justify-content: flex-end; }
+.footer-social a { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .3s; }
+.footer-social a:hover { color: var(--black); }
+.footer-bottom { grid-column: 1/-1; border-top: 1px solid var(--light); padding-top: 32px; display: flex; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; letter-spacing: 0.12em; color: var(--gray); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="oder-redo-home.html" class="nav-logo">ODER × ReDo</a>
+  <ul class="nav-links">
+    <li><a href="oder-redo-art.html">Art</a></li>
+    <li><a href="oder-redo-objects.html">Objects</a></li>
+    <li><a href="oder-redo-education.html">Education</a></li>
+    <li><a href="oder-redo-about.html" class="active">About</a></li>
+    <li><a href="oder-redo-contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="hero-image-full">
+    <p class="ph-label">Studio Photography</p>
+  </div>
+  <div class="hero-title-overlap">
+    <h1 class="page-title">Tim &amp;<br><em>paper.</em></h1>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="about-intro">
+  <div class="intro-sidebar">
+    <span class="sidebar-label reveal">About</span>
+    <div class="sidebar-portrait reveal reveal-delay-1">
+      <p class="ph-label">Portrait</p>
+    </div>
+  </div>
+
+  <div class="intro-text-block">
+    <p class="intro-pull reveal">
+      "Paper is the most honest material —<br>
+      it shows every decision, <em>every hesitation,</em><br>
+      every moment of clarity."
+    </p>
+    <div class="intro-body reveal reveal-delay-1">
+      <p>
+        ODER × ReDo is the studio of Tim — artist, maker, and educator working in paper. The practice encompasses lampshades and lighting objects, sculptural paper works, and educational offerings for those who want to work with the material themselves.
+      </p>
+      <p>
+        Paper is the constant. Everything else — form, function, audience — changes around it. The studio takes commissions from private collectors, works with interior designers and architects on project-specific objects, and runs workshops for groups of all sizes and experience levels.
+      </p>
+      <p>
+        Clients come through Instagram, through designers, and through people who have seen the work in spaces. Each piece is made by hand. Each conversation about a commission starts with a description of the space it will live in.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE -->
+<section class="practice-section">
+  <h2 class="practice-title reveal">The practice<br>has <em>three parts.</em></h2>
+
+  <div class="practice-grid">
+    <div class="practice-item reveal">
+      <span class="practice-num">01</span>
+      <h3 class="practice-name">Art & Objects</h3>
+      <p class="practice-body">
+        Original paper works — lampshades, wall pieces, sculptural objects — made for specific spaces and specific people. Available for acquisition or commission.
+      </p>
+    </div>
+    <div class="practice-item reveal reveal-delay-1">
+      <span class="practice-num">02</span>
+      <h3 class="practice-name">Education</h3>
+      <p class="practice-body">
+        Workshops, PDF guides, and DIY kits for those who want to make things with paper themselves. From two-hour introductions to half-day lampshade sessions.
+      </p>
+    </div>
+    <div class="practice-item reveal reveal-delay-2">
+      <span class="practice-num">03</span>
+      <h3 class="practice-name">Collaboration</h3>
+      <p class="practice-body">
+        Project-based work with designers, architects, and institutions. Paper installations, exhibition pieces, and custom objects made at scale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="process-row">
+    <div class="process-img process-img-1 reveal"><p class="ph-label">Studio — process</p></div>
+    <div class="process-content reveal reveal-delay-1">
+      <span class="process-label">The material</span>
+      <h3 class="process-heading">Paper remembers<br><em>every fold.</em></h3>
+      <p class="process-body">
+        The work begins with a sheet of paper and a decision about where to put the first fold. Everything follows from that. Paper is unforgiving — it records pressure, hesitation, speed. That honesty is what makes it interesting to work with.
+      </p>
+    </div>
+  </div>
+
+  <div class="process-row">
+    <div class="process-img process-img-2 reveal"><p class="ph-label">Studio — making</p></div>
+    <div class="process-content reveal reveal-delay-1">
+      <span class="process-label">The process</span>
+      <h3 class="process-heading">Made slowly,<br><em>by hand.</em></h3>
+      <p class="process-body">
+        Nothing is produced in batches. Each lampshade, each object, each wall work is made one at a time. The pace of the work is part of what the work is about.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXHIBITIONS -->
+<section class="exhibitions-section">
+  <div class="exhibitions-header">
+    <span class="exhibitions-label reveal">Selected</span>
+    <h2 class="exhibitions-title reveal reveal-delay-1">Exhibitions &<br><em>collaborations.</em></h2>
+  </div>
+
+  <div class="exhibitions-list">
+    <div class="exhibition-item reveal">
+      <span class="ex-year">2024</span>
+      <span class="ex-name">Design Week Tel Aviv</span>
+      <span class="ex-place">Tel Aviv</span>
+      <span class="ex-type">Exhibition</span>
+    </div>
+    <div class="exhibition-item reveal">
+      <span class="ex-year">2024</span>
+      <span class="ex-name">Private Residence Commission</span>
+      <span class="ex-place">Tel Aviv</span>
+      <span class="ex-type">Commission</span>
+    </div>
+    <div class="exhibition-item reveal">
+      <span class="ex-year">2023</span>
+      <span class="ex-name">Group Exhibition — Paper Works</span>
+      <span class="ex-place">Jerusalem</span>
+      <span class="ex-type">Exhibition</span>
+    </div>
+    <div class="exhibition-item reveal">
+      <span class="ex-year">2023</span>
+      <span class="ex-name">Interior Design Collaboration</span>
+      <span class="ex-place">Tel Aviv</span>
+      <span class="ex-type">Collaboration</span>
+    </div>
+    <div class="exhibition-item reveal">
+      <span class="ex-year">2022</span>
+      <span class="ex-name">Studio Open — Paper Objects</span>
+      <span class="ex-place">Tel Aviv</span>
+      <span class="ex-type">Exhibition</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="about-cta reveal">
+  <p class="cta-text">Ready to start<br>a <em>conversation?</em></p>
+  <a href="oder-redo-contact.html" class="btn-outline">Get in touch →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ODER × ReDo</div>
+    <div class="footer-tagline">Paper Art Studio</div>
+  </div>
+  <ul class="footer-nav">
+    <li><a href="oder-redo-art.html">Art</a></li>
+    <li><a href="oder-redo-objects.html">Objects</a></li>
+    <li><a href="oder-redo-education.html">Education</a></li>
+    <li><a href="oder-redo-about.html">About</a></li>
+    <li><a href="oder-redo-contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-right">
+    <div class="footer-contact">
+      <a href="mailto:studio@oderredo.com">studio@oderredo.com</a>
+    </div>
+    <div class="footer-social">
+      <a href="#">@oder.redo</a>
+      <a href="#">@redo.yourself</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 ODER × ReDo — All rights reserved</p>
+    <p>Handmade in paper, built in code</p>
+  </div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX=0, mouseY=0, ringX=0, ringY=0;
+  document.addEventListener('mousemove', e => { mouseX=e.clientX; mouseY=e.clientY; cursor.style.left=mouseX+'px'; cursor.style.top=mouseY+'px'; });
+  (function animateRing() { ringX+=(mouseX-ringX)*.12; ringY+=(mouseY-ringY)*.12; ring.style.left=ringX+'px'; ring.style.top=ringY+'px'; requestAnimationFrame(animateRing); })();
+  document.querySelectorAll('a').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='12px'; cursor.style.height='12px'; ring.style.width='52px'; ring.style.height='52px'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='36px'; ring.style.height='36px'; });
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
