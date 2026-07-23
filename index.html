@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ODER × ReDo — Handmade Paper Sculptures, Lighting & Installations</title>
 <meta name="description" content="Handmade pleated-paper sculptures, lighting, and installations by ODER × ReDo. Based in Israel. Get in touch to commission a piece or book a workshop.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230f1013'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' fill='%23eae8e5' text-anchor='middle'%3E%C3%97%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
+<link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -71,7 +72,7 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 28px 52px;
+    padding: 14px 52px;
     background: rgba(250,250,248,0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid transparent;
@@ -82,7 +83,9 @@
   .nav-logo {
     font-family: 'EB Garamond', serif; font-size: 17px;
     letter-spacing: 0.16em; text-transform: uppercase;
+    display: flex; align-items: center;
   }
+  .nav-logo img { height: 104px; width: auto; display: block; }
 
   .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
   .nav-links a {
@@ -283,9 +286,16 @@
     .hero-left { padding: 110px 24px 40px; }
     .hero-right { min-height: 50vh; }
 
+    .nav-logo img { height: 36px; }
+
+    .hero-ctas { flex-wrap: nowrap; gap: 10px; }
+    .hero-ctas .btn-solid, .hero-ctas .btn-outline {
+      flex: 1; padding: 14px 10px; font-size: 10.5px; letter-spacing: 0.1em;
+      text-align: center; white-space: nowrap;
+    }
 
     .categories-section { padding: 56px 24px; }
-    .categories-grid { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
+    .categories-grid { grid-template-columns: repeat(2, 1fr); column-gap: 32px; row-gap: 40px; margin-top: 32px; }
     .category-card { border-right: none; border-bottom: 1px solid var(--light); padding: 0 0 32px; }
     .category-card:last-child { border-bottom: none; }
 
@@ -299,6 +309,15 @@
 
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
   }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .category-card:nth-child(3) { border-bottom: none; }
+  }
+
+  @media (max-width: 640px) {
+    .categories-grid { grid-template-columns: 1fr; row-gap: 0; }
+    .category-card { padding: 0 0 32px; }
+  }
 </style>
 </head>
 <body>
@@ -307,7 +326,7 @@
 <div class="cursor-ring"></div>
 
 <nav id="nav">
-  <a href="#top" class="nav-logo">ODER × ReDo</a>
+  <a href="#top" class="nav-logo"><img src="images/logo-badge-circle-black.png" alt="ODER × ReDo"></a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#work">Work</a></li>
@@ -420,7 +439,7 @@
 <!-- ABOUT -->
 <section class="about-section" id="about">
   <div class="about-image reveal">
-    <img src="images/process-drafting-01.jpg" alt="Hand-drafting a pleat pattern for a paper sculpture" loading="lazy">
+    <img src="images/about-hero-studio-01.jpg" alt="The studio wall and workbench, with pleated paper forms and sketches" loading="lazy" style="object-position: 50% 40%;">
   </div>
   <div>
     <p class="about-eyebrow reveal">The studio</p>
