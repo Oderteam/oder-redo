@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nested Vessels — Art & Installations — ODER × ReDo</title>
+<meta name="description" content="A set of open vessel forms, pleated and nested together. Sold as a group; sizes can be adjusted to the surface they sit on.">
+<link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
+<link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --white: #eae8e5; --black: #0f1013; --gray: #a49d96; --taupe: #847b71;
+    --light: #c6c0ba; --accent: #5b4b40; --text-secondary: #5b5349;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--black); font-family: 'Josefin Sans', sans-serif; font-weight: 300; letter-spacing: 0.04em; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: 'EB Garamond', serif; font-weight: 400; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 52px; background: rgba(250,250,248,0.9); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--light);
+  }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 64px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.3s; }
+  .nav-links a.is-active, .nav-links a:hover { opacity: 1; }
+  .nav-cta { border: 1px solid var(--black); padding: 10px 20px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 1 !important; transition: background 0.3s ease, color 0.3s ease; }
+  .nav-cta:hover { background: var(--black); color: var(--white); }
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;background:none;border:none;cursor:pointer;z-index:210;position:relative;}
+  .nav-toggle span{display:block;width:100%;height:1px;background:var(--black);transition:transform .3s ease, opacity .3s ease;}
+  .nav-toggle.is-active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-toggle.is-active span:nth-child(2){opacity:0;}
+  .nav-toggle.is-active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  body.nav-open{overflow:hidden;}
+
+  .breadcrumb { padding: 130px 52px 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+  .breadcrumb a:hover { color: var(--black); }
+
+  .product-section {
+    padding: 24px 52px 100px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px;
+  }
+  .product-hero-image { aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .product-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  .product-detail { padding-top: 12px; }
+  .product-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 20px; }
+  .product-tag.tag-sold { background: var(--black); color: var(--white); }
+  .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
+  .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; }
+  .product-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 20px; }
+  .product-desc { color: var(--text-secondary); font-size: 16px; line-height: 1.75; max-width: 46ch; margin-bottom: 28px; }
+  .product-details-list { font-size: 13px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 36px; border-top: 1px solid var(--light); padding-top: 16px; max-width: 46ch; }
+  .product-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-solid { background: var(--black); color: var(--white); padding: 16px 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.3s ease; }
+  .btn-solid:hover { background: #3a3833; }
+  .btn-outline { border: 1px solid var(--black); padding: 16px 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.3s ease, color 0.3s ease; }
+  .btn-outline:hover { background: var(--black); color: var(--white); }
+
+  .contact-strip { padding: 90px 52px; border-top: 1px solid var(--light); background: var(--black); color: var(--white); text-align: center; }
+  .contact-strip h2 { font-size: 32px; margin-bottom: 16px; }
+  .contact-strip p { color: var(--gray); font-size: 15px; max-width: 48ch; margin: 0 auto 32px; line-height: 1.7; }
+  .btn-solid-light { display: inline-block; background: var(--white); color: var(--black); padding: 16px 32px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .btn-solid-light:hover { background: var(--light); }
+
+  footer { padding: 36px 52px; background: var(--black); color: #847b71; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 20px; }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: none; }
+    .nav-links.is-open {
+      display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+      height: 100vh; width: 78%; max-width: 320px; background: var(--white);
+      align-items: flex-start; justify-content: center; gap: 26px; padding: 40px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.08); z-index: 200;
+    }
+    .nav-links a { font-size: 15px; opacity: 0.8; }
+    .nav-toggle { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links.is-open .nav-cta { display: inline-block; margin-top: 10px; }
+
+    .breadcrumb { padding: 100px 24px 0; }
+    .product-section { grid-template-columns: 1fr; padding: 20px 24px 64px; gap: 28px; }
+    .contact-strip { padding: 64px 24px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="ds-preview.html" class="nav-logo"><img src="images/logo-badge-circle-black.png" alt="ODER × ReDo"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="ds-preview.html#work">Home</a></li>
+    <li><a href="lighting.html">Lighting</a></li>
+    <li><a href="art-installations.html" class="is-active">Art &amp; Installations</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="ds-preview.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<p class="breadcrumb"><a href="art-installations.html">Art &amp; Installations</a> / Nested Vessels</p>
+
+<section class="product-section">
+  <div class="product-hero-image">
+    <img src="images/vessel-trio-01.jpg" alt="Nested pleated paper vessels">
+  </div>
+  <div class="product-detail">
+    <span class="product-tag tag-order">Available</span>
+    <p class="product-type">Freestanding, set</p>
+    <h1 class="product-title">Nested Vessels</h1>
+    <p class="product-desc">A set of open vessel forms, pleated and nested together. Sold as a group; sizes can be adjusted to the surface they sit on.</p>
+    <p class="product-details-list">Freestanding · Sold as a set · Made to order</p>
+    <div class="product-ctas">
+      <a href="art-installations.html?item=Nested%20Vessels#inquire" class="btn-solid">Inquire about this piece</a>
+      <a href="art-installations.html" class="btn-outline">Back to Art &amp; Installations</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact-strip">
+  <h2>Looking for something built for your space?</h2>
+  <p>Every piece can be adapted in scale, finish, or form. Tell us the space and the piece is built around it.</p>
+  <a href="art-installations.html?item=Nested%20Vessels#inquire" class="btn-solid-light">Get in touch</a>
+</section>
+
+<footer>
+  <span>ODER × ReDo © 2026 — Paper Art Studio, Israel</span>
+  <span><a href="mailto:odertim.studio@gmail.com">odertim.studio@gmail.com</a> · <a href="https://www.instagram.com/oder.redo/" target="_blank" rel="noopener">@oder.redo</a></span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('is-active');
+    links.classList.toggle('is-open');
+    document.body.classList.toggle('nav-open');
+  });
+</script>
+
+</body>
+</html>

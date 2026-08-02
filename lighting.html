@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lighting — ODER × ReDo</title>
+<meta name="description" content="Handmade pleated-paper pendants, table lamps and wall sconces by ODER × ReDo. Each piece made to order.">
+<link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
+<link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #eae8e5;
+    --black: #0f1013;
+    --gray: #a49d96;
+    --taupe: #847b71;
+    --light: #c6c0ba;
+    --accent: #5b4b40;
+    --text-secondary: #5b5349;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: 'EB Garamond', serif; font-weight: 400; }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 52px;
+    background: rgba(250,250,248,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--light);
+  }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo img { height: 64px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    opacity: 0.6; transition: opacity 0.3s;
+  }
+  .nav-links a.is-active, .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    border: 1px solid var(--black); padding: 10px 20px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    opacity: 1 !important; transition: background 0.3s ease, color 0.3s ease;
+  }
+  .nav-cta:hover { background: var(--black); color: var(--white); }
+  .nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;background:none;border:none;cursor:pointer;z-index:210;position:relative;}
+  .nav-toggle span{display:block;width:100%;height:1px;background:var(--black);transition:transform .3s ease, opacity .3s ease;}
+  .nav-toggle.is-active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .nav-toggle.is-active span:nth-child(2){opacity:0;}
+  .nav-toggle.is-active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  body.nav-open{overflow:hidden;}
+
+  /* ============ PAGE HERO ============ */
+  .page-hero { padding: 160px 52px 60px; max-width: 760px; }
+  .page-eyebrow {
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-secondary); margin-bottom: 18px;
+  }
+  .page-title { font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.1; margin-bottom: 20px; }
+  .page-sub { color: var(--text-secondary); font-size: 16px; line-height: 1.7; max-width: 56ch; }
+  .page-note {
+    margin-top: 24px; padding: 16px 20px; background: #f0ece5; border-left: 2px solid var(--accent);
+    font-size: 14px; color: var(--text-secondary); max-width: 56ch; line-height: 1.6;
+  }
+
+  /* ============ PRODUCT GRID ============ */
+  .product-section { padding: 20px 52px 120px; }
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+  .product-card { display: flex; flex-direction: column; }
+  .product-image { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .product-card:hover .product-image img { transform: scale(1.05); }
+  .product-tag {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 12px;
+  }
+  .product-tag.tag-sold { background: var(--black); color: var(--white); }
+  .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
+  .product-info { padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .product-name { font-size: 20px; }
+  .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+  .product-status { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
+  .status-link { border-bottom: 1px solid var(--black); }
+  .product-card:hover .status-link { color: var(--accent); border-color: var(--accent); }
+
+  /* ============ INQUIRY FORM ============ */
+  .signup-section {
+    padding: 100px 52px; border-top: 1px solid var(--light);
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px;
+  }
+  .signup-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 20px; }
+  .signup-title { font-size: 32px; max-width: 14ch; margin-bottom: 20px; }
+  .signup-body { color: var(--text-secondary); font-size: 15px; line-height: 1.8; max-width: 44ch; }
+
+  .signup-form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field label {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary);
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    font-family: 'Josefin Sans', sans-serif; font-size: 15px; color: var(--black);
+    background: transparent; border: none; border-bottom: 1px solid var(--light);
+    padding: 10px 2px; letter-spacing: 0.02em;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none; border-bottom-color: var(--black);
+  }
+  .form-field textarea { resize: vertical; min-height: 90px; }
+  .form-submit {
+    align-self: flex-start; margin-top: 8px;
+    background: var(--black); color: var(--white); padding: 16px 32px; border: none;
+    font-family: 'Josefin Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s ease;
+  }
+  .form-submit:hover { background: #3a3833; }
+  .form-note { font-size: 12px; color: var(--text-secondary); margin-top: -6px; }
+
+  footer {
+    padding: 36px 52px; background: var(--black); color: #847b71;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  footer a:hover { color: var(--white); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 20px; }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: none; }
+    .nav-links.is-open {
+      display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+      height: 100vh; width: 78%; max-width: 320px; background: var(--white);
+      align-items: flex-start; justify-content: center; gap: 26px; padding: 40px;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.08); z-index: 200;
+    }
+    .nav-links a { font-size: 15px; opacity: 0.8; }
+    .nav-toggle { display: flex; }
+    .nav-cta { display: none; }
+    .nav-links.is-open .nav-cta { display: inline-block; margin-top: 10px; }
+
+    .page-hero { padding: 120px 24px 40px; }
+    .product-section { padding: 20px 24px 72px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+    .signup-section { grid-template-columns: 1fr; padding: 56px 24px; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  }
+
+  @media (max-width: 560px) {
+    .product-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="ds-preview.html" class="nav-logo"><img src="images/logo-badge-circle-black.png" alt="ODER × ReDo"></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="ds-preview.html#work">Home</a></li>
+    <li><a href="lighting.html" class="is-active">Lighting</a></li>
+    <li><a href="art-installations.html">Art &amp; Installations</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="ds-preview.html#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <p class="page-eyebrow">Lighting</p>
+  <h1 class="page-title">Pendants, lamps, and sconces.</h1>
+  <p class="page-sub">Nine forms, shown here as a starting catalogue. Every lamp is made to order and can be sized, tinted, or adapted to fit the brief. The piece is built around what the space needs, not the other way around.</p>
+  <p class="page-note">Made to order: production time is quoted per piece once size, finish, and quantity are confirmed. Get in touch with the model name to start.</p>
+</section>
+
+<section class="product-section">
+  <div class="product-grid">
+    <a href="product-panel-wall-sconce.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/lighting-panel-wall-01.jpg" alt="Round pleated ball wall sconce mounted on a tall oak panel" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Panel Wall Sconce</span>
+        <span class="product-type">Wall</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-panel-floor-lamp.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/lighting-panel-floor-01.jpg" alt="Leaning oak panel floor lamp with a round pleated shade, in a lobby" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Panel Floor Lamp</span>
+        <span class="product-type">Floor</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-angled-table-lamp.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/lighting-angled-table-01.jpg" alt="Angled wood and brass table lamp with a pleated cone shade on a terrazzo base" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Angled Table Lamp</span>
+        <span class="product-type">Table</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-bell-pendant.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/lighting-bell-pendant-01.jpg" alt="Bell-shaped pleated pendant lamp over a dining table" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Bell Pendant</span>
+        <span class="product-type">Pendant</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-bell-table-lamp.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-sold">Sold</span>
+        <img src="images/lighting-bell-table-01.jpg" alt="Bell-shaped pleated table lamp on a bedside table" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Bell Table Lamp</span>
+        <span class="product-type">Table</span>
+        <p class="product-status">Sold: <span class="status-link">ask about a remake</span></p>
+      </div>
+    </a>
+
+    <a href="product-cone-wall-sconce.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/cone-mirror-wall-01.jpg" alt="Cone-shaped pleated wall lamp with mirrored centre, glowing" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Cone Wall Sconce</span>
+        <span class="product-type">Wall</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-halo-wall-sconce.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-sold">Sold</span>
+        <img src="images/halo-wall-01.jpg" alt="Flat pleated sunburst wall sconce with brass centre, warm glow" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Halo Wall Sconce</span>
+        <span class="product-type">Wall</span>
+        <p class="product-status">Sold: <span class="status-link">ask about a remake</span></p>
+      </div>
+    </a>
+
+    <a href="product-halo-wall-sconce-mirror.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/halo-wall-mirror-02.jpg" alt="Flat pleated sunburst wall sconce with a convex mirror centre" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Halo Wall Sconce, Mirror</span>
+        <span class="product-type">Wall</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+    <a href="product-cone-pendant-large.html" class="product-card">
+      <div class="product-image">
+        <span class="product-tag tag-order">Available</span>
+        <img src="images/lamp-cone-pendant-l.jpg" alt="Large flat pleated cone pendant lamp with visible bulb" loading="lazy">
+      </div>
+      <div class="product-info">
+        <span class="product-name">Cone Pendant, Large</span>
+        <span class="product-type">Pendant</span>
+        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="signup-section" id="inquire">
+  <div>
+    <p class="signup-eyebrow">Ask about a lamp</p>
+    <h2 class="signup-title">Need a different size or finish?</h2>
+    <p class="signup-body">Every lamp on this page can be adapted: a different scale, a tinted paper, a custom fitting. Pick the piece you have in mind and leave your details. We reply directly.</p>
+  </div>
+
+  <form class="signup-form" id="lightingForm">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="lf-name">Name</label>
+        <input type="text" id="lf-name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="lf-contact">Email or phone</label>
+        <input type="text" id="lf-contact" name="contact" required>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="lf-item">Which lamp?</label>
+      <select id="lf-item" name="item">
+        <option value="Panel Wall Sconce">Panel Wall Sconce</option>
+        <option value="Panel Floor Lamp">Panel Floor Lamp</option>
+        <option value="Angled Table Lamp">Angled Table Lamp</option>
+        <option value="Bell Pendant">Bell Pendant</option>
+        <option value="Bell Table Lamp">Bell Table Lamp</option>
+        <option value="Cone Wall Sconce">Cone Wall Sconce</option>
+        <option value="Halo Wall Sconce">Halo Wall Sconce</option>
+        <option value="Halo Wall Sconce, Mirror">Halo Wall Sconce, Mirror</option>
+        <option value="Cone Pendant, Large">Cone Pendant, Large</option>
+        <option value="Not sure yet">Not sure yet, general question</option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="lf-message">Anything else?</label>
+      <textarea id="lf-message" name="message" placeholder="Size, finish, room, timeline..."></textarea>
+    </div>
+
+    <button type="submit" class="form-submit">Send inquiry</button>
+    <p class="form-note">Opens a pre-filled email to odertim.studio@gmail.com, nothing is sent automatically yet.</p>
+  </form>
+</section>
+
+<footer>
+  <span>ODER × ReDo © 2026 — Paper Art Studio, Israel</span>
+  <span><a href="mailto:odertim.studio@gmail.com">odertim.studio@gmail.com</a> · <a href="https://www.instagram.com/oder.redo/" target="_blank" rel="noopener">@oder.redo</a></span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('is-active');
+    links.classList.toggle('is-open');
+    document.body.classList.toggle('nav-open');
+  });
+
+  // Pre-select the lamp if it arrived via ?item=... from a product page
+  const lfParams = new URLSearchParams(window.location.search);
+  const lfPreselect = lfParams.get('item');
+  if (lfPreselect) {
+    const lfSelect = document.getElementById('lf-item');
+    if (lfSelect && [...lfSelect.options].some(o => o.value === lfPreselect)) {
+      lfSelect.value = lfPreselect;
+    }
+  }
+
+  const lightingForm = document.getElementById('lightingForm');
+  lightingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(lightingForm);
+    const name = data.get('name') || '';
+    const contact = data.get('contact') || '';
+    const item = data.get('item') || '';
+    const message = data.get('message') || '';
+    const subject = encodeURIComponent('Lighting inquiry: ' + item);
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Email/phone: ' + contact + '\n' +
+      'Lamp: ' + item + '\n\n' +
+      'Message:\n' + message
+    );
+    window.location.href = 'mailto:odertim.studio@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
