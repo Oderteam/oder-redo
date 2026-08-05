@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ODER × ReDo — Архитектура сайта</title>
+<style>
+  :root{
+    --white:#eae8e5; --black:#0f1013; --gray:#a49d96; --taupe:#847b71;
+    --light:#c6c0ba; --accent:#5b4b40; --text-secondary:#5b5349;
+  }
+  * { box-sizing: border-box; }
+  body{
+    margin:0; background:var(--white); color:var(--black);
+    font-family:'Josefin Sans', Arial, sans-serif;
+    padding:48px 24px 100px;
+  }
+  h1,h2,h3{ font-family:'EB Garamond', Georgia, serif; font-weight:400; margin:0 0 8px; }
+  .wrap{ max-width:920px; margin:0 auto; }
+  header{ margin-bottom:56px; }
+  header .kicker{ font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:var(--taupe); margin-bottom:12px; }
+  header h1{ font-size:38px; }
+  header p{ color:var(--text-secondary); font-size:16px; max-width:60ch; line-height:1.6; }
+
+  section{ margin-bottom:64px; }
+  section h2{ font-size:24px; border-bottom:1px solid var(--light); padding-bottom:14px; margin-bottom:24px; }
+  section > p.intro{ color:var(--text-secondary); font-size:15px; line-height:1.6; max-width:68ch; margin-bottom:24px; }
+
+  /* --- Tree --- */
+  .tree{ display:flex; flex-direction:column; gap:0; }
+  .node{
+    border:1px solid var(--light); background:#fff;
+    border-radius:2px; padding:16px 20px; margin-bottom:10px;
+  }
+  .node.root{ background:var(--black); color:var(--white); border-color:var(--black); }
+  .node.root .node-title{ color:var(--white); }
+  .node-row{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .node-title{ font-family:'EB Garamond', Georgia, serif; font-size:19px; }
+  .node-file{ font-size:12px; color:var(--taupe); font-family:monospace; }
+  .node-desc{ font-size:14px; color:var(--text-secondary); margin-top:6px; line-height:1.5; }
+  .children{ margin:10px 0 18px 28px; padding-left:20px; border-left:1px solid var(--light); }
+  .leaf{
+    font-size:13px; color:var(--text-secondary); padding:5px 0;
+    display:flex; justify-content:space-between; gap:12px;
+  }
+  .leaf .n{ color:var(--taupe); font-family:monospace; }
+  .status{
+    display:inline-block; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:3px 9px; border-radius:20px; border:1px solid var(--light); color:var(--taupe);
+  }
+  .status.live{ border-color:var(--accent); color:var(--accent); }
+  .status.todo{ border-color:var(--taupe); color:var(--taupe); background:#f3f1ee; }
+
+  /* --- Pipeline --- */
+  .pipeline{ display:flex; flex-direction:column; gap:14px; }
+  .pipe-row{
+    display:grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr;
+    align-items:center; gap:8px; font-size:13px;
+  }
+  .pipe-cell{ border:1px solid var(--light); background:#fff; padding:10px 12px; border-radius:2px; }
+  .pipe-cell b{ display:block; font-family:'EB Garamond', Georgia, serif; font-size:15px; margin-bottom:2px; }
+  .pipe-arrow{ text-align:center; color:var(--taupe); }
+  .pipe-out{ background:var(--black); color:var(--white); }
+  .pipe-out b{ color:var(--white); }
+
+  /* --- Table --- */
+  table{ width:100%; border-collapse:collapse; font-size:14px; }
+  th,td{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--light); vertical-align:top; }
+  th{ font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--taupe); font-weight:400; }
+  td.note{ color:var(--text-secondary); }
+
+  .flag{ background:#f3f1ee; border:1px solid var(--light); padding:16px 20px; font-size:14px; color:var(--text-secondary); line-height:1.6; }
+  .flag b{ color:var(--black); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">ODER × ReDo — рабочий документ</div>
+    <h1>Архитектура сайта</h1>
+    <p>Карта всех страниц, как они собираются, и что по каждому разделу ещё в работе. Держим здесь для быстрой ориентации перед тем, как решать, за какую страницу браться дальше.</p>
+  </header>
+
+  <section>
+    <h2>Карта страниц</h2>
+    <p class="intro">Четыре раздела в навигации, у каждого своя страница-витрина и набор карточек товара/услуги, которые разворачиваются в отдельные страницы.</p>
+
+    <div class="tree">
+
+      <div class="node root">
+        <div class="node-row">
+          <span class="node-title">Home</span>
+          <span class="node-file">index.html ≡ ds-preview.html</span>
+        </div>
+        <div class="node-desc">Hero, Selected Work (превью), About, контактный якорь #contact. Куда ведёт логотип и пункт «Home» из любой другой страницы.</div>
+      </div>
+
+      <div class="node">
+        <div class="node-row">
+          <span class="node-title">Lighting</span>
+          <span class="node-file">lighting.html</span>
+        </div>
+        <div class="node-desc">Витрина из 9 карточек (деревянная серия сверху), форма заявки внизу (#inquire) с выбором конкретного светильника.</div>
+        <div class="children">
+          <div class="leaf"><span>9 карточек → 9 страниц товара <span class="n">product-*.html</span></span><span class="status live">live</span></div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-row">
+          <span class="node-title">Art &amp; Installations</span>
+          <span class="node-file">art-installations.html</span>
+        </div>
+        <div class="node-desc">Скульптуры + инсталляции одним разделом. Форма заявки внизу (#inquire) со списком по группам.</div>
+        <div class="children">
+          <div class="leaf"><span>12 карточек → 12 страниц объекта <span class="n">item-*.html</span></span><span class="status live">live</span></div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-row">
+          <span class="node-title">Education</span>
+          <span class="node-file">education.html</span>
+        </div>
+        <div class="node-desc">3 формата: Academy / Experience / Open Workshop. Общая форма выбора формата внизу — запасной вариант для тех, кто не определился.</div>
+        <div class="children">
+          <div class="leaf"><span>3 карточки → 3 страницы формата <span class="n">workshop-*.html</span>, каждая со своей формой заявки</span><span class="status live">live</span></div>
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-row">
+          <span class="node-title">Contact</span>
+          <span class="node-file">— отдельной страницы нет</span>
+        </div>
+        <div class="node-desc">Пункт «Get in touch» в навигации ведёт на Home → #contact. Плюс на каждом разделе своя контекстная форма (Lighting / Art & Installations / Education / каждая страница workshop).</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Как собираются страницы товара/объекта/курса</h2>
+    <p class="intro">24 из ~30 страниц сайта не редактируются вручную — они генерируются из трёх JSON-файлов через шаблон и Python-скрипт. Правишь данные в JSON → запускаешь скрипт → страницы пересобираются сами, в едином виде.</p>
+
+    <div class="pipeline">
+      <div class="pipe-row">
+        <div class="pipe-cell"><b>data/products.json</b>9 позиций</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>product-template.html</b>вёрстка + плейсхолдеры</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>generate_products.py</b>логика цен/статуса</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell pipe-out"><b>product-*.html</b>9 файлов</div>
+      </div>
+      <div class="pipe-row">
+        <div class="pipe-cell"><b>data/art-items.json</b>12 позиций</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>art-item-template.html</b>вёрстка + плейсхолдеры</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>generate_art_items.py</b>сборка страниц</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell pipe-out"><b>item-*.html</b>12 файлов</div>
+      </div>
+      <div class="pipe-row">
+        <div class="pipe-cell"><b>data/workshops.json</b>3 позиции</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>workshop-template.html</b>вёрстка + плейсхолдеры</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell"><b>generate_workshops.py</b>цена/статус/форма</div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-cell pipe-out"><b>workshop-*.html</b>3 файла</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Страницы-витрины — правятся вручную</h2>
+    <p class="intro">Эти пять файлов не генерируются, каждое изменение вносится напрямую в HTML.</p>
+    <table>
+      <tr><th>Страница</th><th>Файл</th><th>Статус</th><th>Заметка</th></tr>
+      <tr><td>Home</td><td><span class="node-file">index.html / ds-preview.html</span></td><td><span class="status todo">тонкая</span></td><td class="note">Сейчас скромнее внутренних страниц. В планах: расширить Selected Work, вернуть полноценный About.</td></tr>
+      <tr><td>Lighting</td><td><span class="node-file">lighting.html</span></td><td><span class="status live">готова</span></td><td class="note">Карточки, цены, форма заявки — актуально.</td></tr>
+      <tr><td>Art &amp; Installations</td><td><span class="node-file">art-installations.html</span></td><td><span class="status live">готова</span></td><td class="note">Форма заявки с группировкой по категориям.</td></tr>
+      <tr><td>Education</td><td><span class="node-file">education.html</span></td><td><span class="status live">готова</span></td><td class="note">3 формата, карточки без цен, есть режим waitlist для будущих «coming soon».</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Что уже встроено как переиспользуемый паттерн</h2>
+    <table>
+      <tr><th>Паттерн</th><th>Где живёт</th><th>Как работает</th></tr>
+      <tr><td>Форма заявки → письмо</td><td>Lighting, Art & Installations, Education, каждая workshop-страница</td><td class="note">Заполнение полей собирает mailto-ссылку на odertim.studio@gmail.com с темой письма — без бэкенда.</td></tr>
+      <tr><td>Предзаполнение товара по ссылке</td><td>Все детальные страницы → форма на странице-разделе</td><td class="note"><span class="node-file">?item=Название#inquire</span> — дропдаун открывается уже с выбранным товаром.</td></tr>
+      <tr><td>Coming Soon / waitlist</td><td>data/workshops.json (поле status), готово к переносу на products.json</td><td class="note">status: "coming-soon" переключает CTA и форму в режим ожидания, без отдельного компонента.</td></tr>
+      <tr><td>Ценовой pill-селектор</td><td>Страницы товара и workshop</td><td class="note">Клик по размеру/треку меняет цену на странице через JS, без перезагрузки.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>На заметку</h2>
+    <div class="flag">
+      <b>index.html и ds-preview.html</b> сейчас идентичны (проверено) — но это два отдельных файла, синхронизируются вручную. Перед любым пушем стоит свериться, что не разошлись.<br><br>
+      <b>oder-redo-landing.html</b> и <b>lighting-mockup-review.html</b> — черновики прошлых версий, из живой сборки страниц уже выпали. Можно убрать при следующей уборке, если не нужны как референс.<br><br>
+      <b>oder-redo-cowork-package/</b> — архивная папка с исходниками фото и старыми версиями (166 МБ), в саму навигацию сайта не входит.
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

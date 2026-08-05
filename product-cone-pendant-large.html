@@ -44,26 +44,52 @@
   .breadcrumb { padding: 130px 52px 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
   .breadcrumb a:hover { color: var(--black); }
 
-  .product-section {
-    padding: 24px 52px 100px;
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px;
-  }
-  .product-hero-image { aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
-  .product-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  /* ============ PRODUCT ============ */
+  .product-section { padding: 24px 52px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .p-image { aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .p-image img { width: 100%; height: 100%; object-fit: cover; }
+  .p-thumbs { display: flex; gap: 8px; margin-top: 8px; }
+  .p-thumbs .thumb { width: 64px; aspect-ratio: 1/1; overflow: hidden; border: 1px solid transparent; cursor: pointer; opacity: 0.6; transition: opacity 0.2s ease, border-color 0.2s ease; }
+  .p-thumbs .thumb.active { opacity: 1; border-color: var(--black); }
+  .p-thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .p-thumbs .thumb.placeholder { background: #d3cec6; opacity: 0.35; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gray); }
 
-  .product-detail { padding-top: 12px; }
+  .p-detail { padding-top: 12px; }
   .product-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 20px; }
   .product-tag.tag-sold { background: var(--black); color: var(--white); }
   .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
-  .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; }
-  .product-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 20px; }
-  .product-desc { color: var(--text-secondary); font-size: 16px; line-height: 1.75; max-width: 46ch; margin-bottom: 28px; }
-  .product-details-list { font-size: 13px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 36px; border-top: 1px solid var(--light); padding-top: 16px; max-width: 46ch; }
-  .product-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-solid { background: var(--black); color: var(--white); padding: 16px 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.3s ease; }
-  .btn-solid:hover { background: #3a3833; }
-  .btn-outline { border: 1px solid var(--black); padding: 16px 30px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; transition: background 0.3s ease, color 0.3s ease; }
-  .btn-outline:hover { background: var(--black); color: var(--white); }
+  .p-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 14px; margin-top: 0; }
+  .p-price { font-size: 20px; color: var(--accent); font-family: 'EB Garamond', serif; margin-bottom: 24px; }
+  .p-desc { color: var(--text-secondary); font-size: 15px; line-height: 1.8; max-width: 44ch; margin-bottom: 28px; }
+
+  .p-sizes { margin-bottom: 28px; }
+  .p-sizes p.label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
+  .size-options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .size-opt {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; min-width: 150px;
+    border: 1px solid var(--light); padding: 9px 16px; font-size: 13px; cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .size-opt .opt-meta { color: var(--gray); }
+  .size-opt.active { border-color: var(--black); background: var(--black); color: var(--white); }
+  .size-opt.active .opt-meta { color: var(--light); }
+  .size-opt:hover:not(.active) { border-color: var(--accent); }
+
+  .p-sold-note { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 40ch; margin-bottom: 28px; border-left: 2px solid var(--accent); padding: 12px 16px; background: #f0ece5; }
+
+  .p-cta { display: inline-block; background: var(--black); color: var(--white); padding: 16px 32px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 40px; transition: background 0.3s ease; }
+  .p-cta:hover { background: #3a3833; }
+
+  .accordion { border-top: 1px solid var(--light); }
+  .acc-item { border-bottom: 1px solid var(--light); }
+  .acc-item summary { padding: 16px 0; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; }
+  .acc-item summary::-webkit-details-marker { display: none; }
+  .acc-item summary::after { content: '+'; font-family: 'EB Garamond', serif; font-size: 18px; }
+  .acc-item[open] summary::after { content: '\2013'; }
+  .acc-body { padding: 0 0 16px; color: var(--text-secondary); font-size: 14px; line-height: 1.8; }
+  .spec-row { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; font-size: 13px; border-bottom: 1px dotted var(--light); }
+  .spec-row span:first-child { color: var(--gray); flex-shrink: 0; }
+  .spec-row span:last-child { text-align: right; }
 
   .contact-strip { padding: 90px 52px; border-top: 1px solid var(--light); background: var(--black); color: var(--white); text-align: center; }
   .contact-strip h2 { font-size: 32px; margin-bottom: 16px; }
@@ -113,18 +139,43 @@
 <p class="breadcrumb"><a href="lighting.html">Lighting</a> / Cone Pendant, Large</p>
 
 <section class="product-section">
-  <div class="product-hero-image">
-    <img src="images/lamp-cone-pendant-l.jpg" alt="Large flat pleated cone pendant lamp with visible bulb">
+  <div>
+    <div class="p-image">
+      <img id="pImage" src="images/lamp-cone-pendant-l.jpg" alt="Large flat pleated cone pendant lamp with visible bulb">
+    </div>
+    <div class="p-thumbs">
+      <div class="thumb active"><img src="images/lamp-cone-pendant-l.jpg" alt=""></div>
+      <div class="thumb placeholder">+</div>
+      <div class="thumb placeholder">+</div>
+      <div class="thumb placeholder">+</div>
+    </div>
   </div>
-  <div class="product-detail">
-    <span class="product-tag tag-order">Available</span>
-    <p class="product-type">Pendant</p>
-    <h1 class="product-title">Cone Pendant, Large</h1>
-    <p class="product-desc">The largest of the cone pendants, sized for a bar, restaurant counter, or a room with high ceilings. Three look well spaced along a run.</p>
-    <p class="product-details-list">Pendant · Large scale · Bulb and cord included</p>
-    <div class="product-ctas">
-      <a href="lighting.html?item=Cone%20Pendant%2C%20Large#inquire" class="btn-solid">Inquire about this piece</a>
-      <a href="lighting.html" class="btn-outline">Back to Lighting</a>
+  <div class="p-detail">
+    
+    <h1 class="p-title">Cone Pendant, Large</h1>
+    <p class="p-price" id="pPrice">from ₪1,800</p>
+    <p class="p-desc">The largest of the cone pendants, sized for a bar, restaurant counter, or a room with high ceilings. Three look well spaced along a run.</p>
+    <div class="p-sizes">
+      <p class="label">Size</p>
+      <div class="size-options">
+        <span class="size-opt active" data-price="1800"><span class="opt-label">Ø 40cm</span><span class="opt-meta">₪1,800</span></span><span class="size-opt" data-price="2400"><span class="opt-label">Ø 50cm</span><span class="opt-meta">₪2,400</span></span>
+      </div>
+    </div>
+    <a href="lighting.html?item=Cone%20Pendant%2C%20Large#inquire" class="p-cta">Inquire →</a>
+    <div class="accordion">
+      <details class="acc-item" open>
+        <summary>Details</summary>
+        <div class="acc-body">
+          <div class="spec-row"><span>Material</span><span>Pleated paper, brass fitting</span></div>
+          <div class="spec-row"><span>Size</span><span>Bulb and cord included, large scale</span></div>
+          <div class="spec-row"><span>Light source</span><span>LED, E27, warm white</span></div>
+          <div class="spec-row"><span>Made to order</span><span>Ships in 3-4 weeks</span></div>
+        </div>
+      </details>
+      <details class="acc-item">
+        <summary>Shipping</summary>
+        <div class="acc-body">Handmade to order. Ships worldwide; delivery time and cost calculated at checkout, or over WhatsApp for now.</div>
+      </details>
     </div>
   </div>
 </section>
@@ -147,6 +198,18 @@
     toggle.classList.toggle('is-active');
     links.classList.toggle('is-open');
     document.body.classList.toggle('nav-open');
+  });
+
+  const sizeOpts = document.querySelectorAll('.size-opt');
+  const priceEl = document.getElementById('pPrice');
+  sizeOpts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      sizeOpts.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      if (priceEl && opt.dataset.price) {
+        priceEl.textContent = 'from ₪' + Number(opt.dataset.price).toLocaleString();
+      }
+    });
   });
 </script>
 

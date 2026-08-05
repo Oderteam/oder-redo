@@ -74,26 +74,11 @@
   }
   .page-title { font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.1; margin-bottom: 20px; }
   .page-sub { color: var(--text-secondary); font-size: 16px; line-height: 1.7; max-width: 56ch; }
-  .page-note {
-    margin-top: 24px; padding: 16px 20px; background: #f0ece5; border-left: 2px solid var(--accent);
-    font-size: 14px; color: var(--text-secondary); max-width: 56ch; line-height: 1.6;
-  }
-
-  /* ============ FILTER TABS ============ */
-  .filter-row { padding: 0 52px; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-  .filter-tab {
-    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 10px 20px; border: 1px solid var(--light); background: transparent;
-    color: var(--black); cursor: pointer; transition: background 0.3s ease, border-color 0.3s ease;
-    font-family: 'Josefin Sans', sans-serif; font-weight: 300;
-  }
-  .filter-tab.is-active, .filter-tab:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
   /* ============ PRODUCT GRID ============ */
   .product-section { padding: 20px 52px 120px; }
   .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
   .product-card { display: flex; flex-direction: column; }
-  .product-card.is-hidden { display: none; }
   .product-image { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
   .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
   .product-card:hover .product-image img { transform: scale(1.05); }
@@ -104,12 +89,14 @@
   }
   .product-tag.tag-sold { background: var(--black); color: var(--white); }
   .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
-  .product-info { padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .product-info { padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .info-left { display: flex; flex-direction: column; gap: 4px; }
+  .info-right { flex-shrink: 0; }
   .product-name { font-size: 20px; }
   .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
-  .product-status { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
-  .status-link { border-bottom: 1px solid var(--black); }
-  .product-card:hover .status-link { color: var(--accent); border-color: var(--accent); }
+  .product-price { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary); white-space: nowrap; }
+  .status-link { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--black); white-space: nowrap; }
+  .product-card:hover .status-link { color: var(--accent); }
 
   /* ============ INQUIRY FORM ============ */
   .signup-section {
@@ -167,7 +154,6 @@
     .nav-links.is-open .nav-cta { display: inline-block; margin-top: 10px; }
 
     .page-hero { padding: 120px 24px 40px; }
-    .filter-row { padding: 0 24px; }
     .product-section { padding: 20px 24px 72px; }
     .product-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
     .signup-section { grid-template-columns: 1fr; padding: 56px 24px; gap: 40px; }
@@ -196,89 +182,50 @@
 
 <section class="page-hero">
   <p class="page-eyebrow">Art &amp; Installations</p>
-  <h1 class="page-title">Sculpture and space, made by hand.</h1>
-  <p class="page-sub">Framed and wall-mounted pieces for a home or gallery, alongside larger installations built for retail windows, ceilings, and atriums. Every form starts from a single sheet, pleated and shaped to the piece it becomes.</p>
-  <p class="page-note">Sculptures are made to order in the sizes shown here. Installations are built for a specific space; completed projects are shown as reference, and a new one is scoped to your space and brief.</p>
+  <h1 class="page-title">Sculpture and space.</h1>
+  <p class="page-sub">Sculptures and installations built from the same fold as our lighting, scaled into freestanding forms and pieces made for a specific wall, window, or ceiling. Framed studies suit a home; larger installations are built to measure for retail windows, ceilings, and atriums.</p>
 </section>
-
-<div class="filter-row" id="filterRow">
-  <button class="filter-tab is-active" data-filter="all">All</button>
-  <button class="filter-tab" data-filter="sculpture">Sculptures</button>
-  <button class="filter-tab" data-filter="installation">Installations</button>
-</div>
 
 <section class="product-section">
   <div class="product-grid" id="productGrid">
 
     <a href="item-wing-study.html" class="product-card" data-kind="sculpture">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/sculpture-wing-01.jpg" alt="Wing-shaped pleated paper wall sculpture" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Wing Study</span>
-        <span class="product-type">Wall sculpture</span>
-        <p class="product-status">Available: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Wing Study</span>
+          <span class="product-type">Wall sculpture</span>
+        </div>
+        <div class="info-right"><span class="product-price">from ₪2,300</span></div>
       </div>
     </a>
 
-    <a href="item-wing-study-framed.html" class="product-card" data-kind="sculpture">
+    <a href="item-totems-trio.html" class="product-card" data-kind="sculpture">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
-        <img src="images/sculpture-wing-relief-01.jpg" alt="Framed pleated paper relief sculpture on a wall" loading="lazy">
+        <img src="images/sculpture-totem-trio-01.jpg" alt="Three tall pleated paper totem sculptures with brass rings, in varying heights" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Wing Study, Framed</span>
-        <span class="product-type">Framed piece</span>
-        <p class="product-status">Available: <span class="status-link">inquire</span></p>
-      </div>
-    </a>
-
-    <a href="item-wave-form.html" class="product-card" data-kind="sculpture">
-      <div class="product-image">
-        <span class="product-tag tag-sold">Sold</span>
-        <img src="images/sculpture-wave-01.jpg" alt="Large wave-shaped pleated paper sculpture on the floor" loading="lazy">
-      </div>
-      <div class="product-info">
-        <span class="product-name">Wave Form</span>
-        <span class="product-type">Freestanding</span>
-        <p class="product-status">Sold: <span class="status-link">ask about a similar piece</span></p>
-      </div>
-    </a>
-
-    <a href="item-twist-form.html" class="product-card" data-kind="sculpture">
-      <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
-        <img src="images/sculpture-asemic-detail-01.jpg" alt="Small twisting ribbon-like pleated paper sculpture" loading="lazy">
-      </div>
-      <div class="product-info">
-        <span class="product-name">Twist Form</span>
-        <span class="product-type">Tabletop</span>
-        <p class="product-status">Available: <span class="status-link">inquire</span></p>
-      </div>
-    </a>
-
-    <a href="item-fold-study.html" class="product-card" data-kind="sculpture">
-      <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
-        <img src="images/sculpture-fold-detail-01.jpg" alt="Close-up of a faceted geometric pleated paper form, backlit" loading="lazy">
-      </div>
-      <div class="product-info">
-        <span class="product-name">Fold Study</span>
-        <span class="product-type">Detail piece</span>
-        <p class="product-status">Available: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Totems Trio</span>
+          <span class="product-type">Freestanding, set</span>
+        </div>
+        <div class="info-right"><span class="product-price">from ₪13,300</span></div>
       </div>
     </a>
 
     <a href="item-nested-vessels.html" class="product-card" data-kind="sculpture">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
+        <span class="product-tag tag-sold">Sold Out</span>
         <img src="images/vessel-trio-01.jpg" alt="Nested pleated paper vessels" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Nested Vessels</span>
-        <span class="product-type">Freestanding, set</span>
-        <p class="product-status">Available: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Nested Vessels</span>
+          <span class="product-type">Freestanding, set</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
@@ -288,9 +235,11 @@
         <img src="images/installation-boutique-window-wide-01.jpg" alt="Angular pleated paper installation filling a wide boutique window" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Boutique Window</span>
-        <span class="product-type">Retail installation</span>
-        <p class="product-status">Completed Project: <span class="status-link">ask about a similar piece</span></p>
+        <div class="info-left">
+          <span class="product-name">Boutique Window</span>
+          <span class="product-type">Retail installation</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
@@ -300,21 +249,25 @@
         <img src="images/installation-fashion-window-01.jpg" alt="Sweeping pleated paper forms around a mannequin in a fashion window" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Fashion Window</span>
-        <span class="product-type">Retail installation</span>
-        <p class="product-status">Completed Project: <span class="status-link">ask about a similar piece</span></p>
+        <div class="info-left">
+          <span class="product-name">Fashion Window</span>
+          <span class="product-type">Retail installation</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
     <a href="item-gallery-wall.html" class="product-card" data-kind="installation">
       <div class="product-image">
-        <span class="product-tag tag-order">Available to Commission</span>
+        <span class="product-tag tag-sold">Completed Project</span>
         <img src="images/installation-gallery-01.jpg" alt="Large spiral pleated paper wall installation in a gallery" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Gallery Wall</span>
-        <span class="product-type">Wall installation</span>
-        <p class="product-status">Available to Commission: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Gallery Wall</span>
+          <span class="product-type">Wall installation</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
@@ -324,9 +277,11 @@
         <img src="images/installation-restaurant-ceiling-01.jpg" alt="Flowing pleated paper ceiling installation above a restaurant dining room" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Restaurant Ceiling</span>
-        <span class="product-type">Ceiling installation</span>
-        <p class="product-status">Completed Project: <span class="status-link">ask about a similar piece</span></p>
+        <div class="info-left">
+          <span class="product-name">Restaurant Ceiling</span>
+          <span class="product-type">Ceiling installation</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
@@ -336,21 +291,24 @@
         <img src="images/installation-atrium-birds-01.jpg" alt="A flock of pleated paper forms suspended in a mall atrium" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Atrium in Flight</span>
-        <span class="product-type">Atrium installation</span>
-        <p class="product-status">Completed Project: <span class="status-link">ask about a similar piece</span></p>
+        <div class="info-left">
+          <span class="product-name">Atrium in Flight</span>
+          <span class="product-type">Atrium installation</span>
+        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
     <a href="item-storefront-chandelier.html" class="product-card" data-kind="installation">
       <div class="product-image">
-        <span class="product-tag tag-order">Available to Commission</span>
         <img src="images/installation-storefront-chandelier-01.jpg" alt="Large pleated paper chandelier installation in a storefront window" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Storefront Chandelier</span>
-        <span class="product-type">Retail installation</span>
-        <p class="product-status">Available to Commission: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Storefront Chandelier</span>
+          <span class="product-type">Retail installation</span>
+        </div>
+        <div class="info-right"><span class="product-price">from ₪4,800</span></div>
       </div>
     </a>
 
@@ -381,10 +339,7 @@
       <select id="af-item" name="item">
         <optgroup label="Sculptures">
           <option value="Wing Study">Wing Study</option>
-          <option value="Wing Study, Framed">Wing Study, Framed</option>
-          <option value="Wave Form">Wave Form</option>
-          <option value="Twist Form">Twist Form</option>
-          <option value="Fold Study">Fold Study</option>
+          <option value="Totems Trio">Totems Trio</option>
           <option value="Nested Vessels">Nested Vessels</option>
         </optgroup>
         <optgroup label="Installations">
@@ -451,18 +406,6 @@
     window.location.href = 'mailto:odertim.studio@gmail.com?subject=' + subject + '&body=' + body;
   });
 
-  const tabs = document.querySelectorAll('.filter-tab');
-  const cards = document.querySelectorAll('#productGrid .product-card');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      const filter = tab.dataset.filter;
-      cards.forEach(card => {
-        card.classList.toggle('is-hidden', filter !== 'all' && card.dataset.kind !== filter);
-      });
-    });
-  });
 </script>
 
 </body>

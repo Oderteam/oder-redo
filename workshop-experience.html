@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Floor Lamp — Lighting — ODER × ReDo</title>
-<meta name="description" content="The same panel and pleated sphere brought to floor scale, leaning against the wall on its own small foot. Needs no drilling, just a wall to lean on.">
+<title>Experience — Education — ODER × ReDo</title>
+<meta name="description" content="A private session booked just for your group, building one object from a set template. No folding experience needed: the template does the heavy lifting, we're there to help at every step, and there's room for personal touches.">
 <link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
 <link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,29 +44,29 @@
   .breadcrumb { padding: 130px 52px 0; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
   .breadcrumb a:hover { color: var(--black); }
 
-  /* ============ PRODUCT ============ */
-  .product-section { padding: 24px 52px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-  .p-image { aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
-  .p-image img { width: 100%; height: 100%; object-fit: cover; }
-  .p-thumbs { display: flex; gap: 8px; margin-top: 8px; }
-  .p-thumbs .thumb { width: 64px; aspect-ratio: 1/1; overflow: hidden; border: 1px solid transparent; cursor: pointer; opacity: 0.6; transition: opacity 0.2s ease, border-color 0.2s ease; }
-  .p-thumbs .thumb.active { opacity: 1; border-color: var(--black); }
-  .p-thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .p-thumbs .thumb.placeholder { background: #d3cec6; opacity: 0.35; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gray); }
+  /* ============ WORKSHOP ============ */
+  .workshop-section { padding: 24px 52px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .w-image { aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .w-image img { width: 100%; height: 100%; object-fit: cover; }
+  .w-thumbs { display: flex; gap: 8px; margin-top: 8px; }
+  .w-thumbs .thumb { width: 64px; aspect-ratio: 1/1; overflow: hidden; border: 1px solid transparent; cursor: pointer; opacity: 0.6; transition: opacity 0.2s ease, border-color 0.2s ease; }
+  .w-thumbs .thumb.active { opacity: 1; border-color: var(--black); }
+  .w-thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .w-thumbs .thumb.placeholder { background: #d3cec6; opacity: 0.35; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--gray); }
 
-  .p-detail { padding-top: 12px; }
-  .product-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 20px; }
-  .product-tag.tag-sold { background: var(--black); color: var(--white); }
-  .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
-  .p-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 14px; margin-top: 0; }
-  .p-price { font-size: 20px; color: var(--accent); font-family: 'EB Garamond', serif; margin-bottom: 24px; }
-  .p-desc { color: var(--text-secondary); font-size: 15px; line-height: 1.8; max-width: 44ch; margin-bottom: 28px; }
+  .w-detail { padding-top: 12px; }
+  .status-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; margin-bottom: 14px; background: var(--taupe); color: var(--white); }
+  .workshop-meta { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; }
+  .w-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 8px; }
+  .w-tagline { font-family: 'EB Garamond', serif; font-style: italic; color: var(--accent); font-size: 17px; margin-bottom: 20px; max-width: 40ch; }
+  .w-price { font-size: 20px; color: var(--accent); font-family: 'EB Garamond', serif; margin-bottom: 24px; }
+  .w-desc { color: var(--text-secondary); font-size: 15px; line-height: 1.8; max-width: 46ch; margin-bottom: 28px; }
 
   .p-sizes { margin-bottom: 28px; }
   .p-sizes p.label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 10px; }
   .size-options { display: flex; gap: 8px; flex-wrap: wrap; }
   .size-opt {
-    display: flex; align-items: center; justify-content: space-between; gap: 14px; min-width: 150px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; min-width: 170px;
     border: 1px solid var(--light); padding: 9px 16px; font-size: 13px; cursor: pointer;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
@@ -75,10 +75,27 @@
   .size-opt.active .opt-meta { color: var(--light); }
   .size-opt:hover:not(.active) { border-color: var(--accent); }
 
-  .p-sold-note { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 40ch; margin-bottom: 28px; border-left: 2px solid var(--accent); padding: 12px 16px; background: #f0ece5; }
-
-  .p-cta { display: inline-block; background: var(--black); color: var(--white); padding: 16px 32px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 40px; transition: background 0.3s ease; }
-  .p-cta:hover { background: #3a3833; }
+  .w-inquiry { border-top: 1px solid var(--light); padding-top: 24px; margin-bottom: 8px; }
+  .w-inquiry-label { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  .signup-form { display: flex; flex-direction: column; gap: 16px; max-width: 46ch; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+  .form-field input, .form-field textarea {
+    font-family: 'Josefin Sans', sans-serif; font-size: 15px; color: var(--black);
+    background: transparent; border: none; border-bottom: 1px solid var(--light);
+    padding: 10px 2px; letter-spacing: 0.02em;
+  }
+  .form-field input:focus, .form-field textarea:focus { outline: none; border-bottom-color: var(--black); }
+  .form-field textarea { resize: vertical; min-height: 70px; }
+  .form-submit {
+    align-self: flex-start; margin-top: 4px;
+    background: var(--black); color: var(--white); padding: 16px 32px; border: none;
+    font-family: 'Josefin Sans', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s ease;
+  }
+  .form-submit:hover { background: #3a3833; }
+  .form-note { font-size: 12px; color: var(--text-secondary); margin-top: -6px; }
 
   .accordion { border-top: 1px solid var(--light); }
   .acc-item { border-bottom: 1px solid var(--light); }
@@ -116,7 +133,7 @@
     .nav-links.is-open .nav-cta { display: inline-block; margin-top: 10px; }
 
     .breadcrumb { padding: 100px 24px 0; }
-    .product-section { grid-template-columns: 1fr; padding: 20px 24px 64px; gap: 28px; }
+    .workshop-section { grid-template-columns: 1fr; padding: 20px 24px 64px; gap: 28px; }
     .contact-strip { padding: 64px 24px; }
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
   }
@@ -129,61 +146,83 @@
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="ds-preview.html#work">Home</a></li>
-    <li><a href="lighting.html" class="is-active">Lighting</a></li>
+    <li><a href="lighting.html">Lighting</a></li>
     <li><a href="art-installations.html">Art &amp; Installations</a></li>
-    <li><a href="education.html">Education</a></li>
+    <li><a href="education.html" class="is-active">Education</a></li>
     <li><a href="ds-preview.html#contact" class="nav-cta">Get in touch</a></li>
   </ul>
 </nav>
 
-<p class="breadcrumb"><a href="lighting.html">Lighting</a> / Panel Floor Lamp</p>
+<p class="breadcrumb"><a href="education.html">Education</a> / Experience</p>
 
-<section class="product-section">
+<section class="workshop-section">
   <div>
-    <div class="p-image">
-      <img id="pImage" src="images/lighting-panel-floor-01.jpg" alt="Leaning oak panel floor lamp with a round pleated shade, in a lobby">
+    <div class="w-image">
+      <img src="images/workshop-3.jpg" alt="Group folding paper together at a workshop table">
     </div>
-    <div class="p-thumbs">
-      <div class="thumb active"><img src="images/lighting-panel-floor-01.jpg" alt=""></div>
-      <div class="thumb placeholder">+</div>
+    <div class="w-thumbs">
+      <div class="thumb active"><img src="images/workshop-3.jpg" alt=""></div>
       <div class="thumb placeholder">+</div>
       <div class="thumb placeholder">+</div>
     </div>
   </div>
-  <div class="p-detail">
+  <div class="w-detail">
     
-    <h1 class="p-title">Panel Floor Lamp</h1>
-    <p class="p-price" id="pPrice">from ₪3,600</p>
-    <p class="p-desc">The same panel and pleated sphere brought to floor scale, leaning against the wall on its own small foot. Needs no drilling, just a wall to lean on.</p>
+    <p class="workshop-meta">Private booking · No skill needed</p>
+    <h1 class="w-title">Experience</h1>
+    
+    <p class="w-price" id="wPrice">Price on request</p>
+    <p class="w-desc">A private session booked just for your group, building one object from a set template. No folding experience needed: the template does the heavy lifting, we're there to help at every step, and there's room for personal touches.</p>
     <div class="p-sizes">
-      <p class="label">Size</p>
+      <p class="label">Track</p>
       <div class="size-options">
-        <span class="size-opt active" data-price="3600"><span class="opt-label">Standard</span><span class="opt-meta">₪3,600</span></span><span class="size-opt" data-price="4600"><span class="opt-label">Tall</span><span class="opt-meta">₪4,600</span></span>
+        <span class="size-opt active"><span class="opt-label">Intimate</span><span class="opt-meta">Smaller group, closer setting</span></span><span class="size-opt"><span class="opt-label">Full Event</span><span class="opt-meta">Full group, full event setup</span></span>
       </div>
     </div>
-    <a href="lighting.html?item=Panel%20Floor%20Lamp#inquire" class="p-cta">Inquire →</a>
     <div class="accordion">
       <details class="acc-item" open>
         <summary>Details</summary>
         <div class="acc-body">
-          <div class="spec-row"><span>Material</span><span>Pleated paper, oak panel</span></div>
-          <div class="spec-row"><span>Fitting</span><span>Freestanding, leans on a wall</span></div>
-          <div class="spec-row"><span>Light source</span><span>LED, warm white</span></div>
-          <div class="spec-row"><span>Made to order</span><span>Ships in 3-4 weeks</span></div>
+          <div class="spec-row"><span>Format</span><span>Private, closed booking</span></div>
+          <div class="spec-row"><span>Skill level</span><span>None needed</span></div>
+          <div class="spec-row"><span>Object</span><span>Built from a set template, personalized</span></div>
+          <div class="spec-row"><span>Location</span><span>On-site or in the studio</span></div>
         </div>
       </details>
       <details class="acc-item">
-        <summary>Shipping</summary>
-        <div class="acc-body">Handmade to order. Ships worldwide; delivery time and cost calculated at checkout, or over WhatsApp for now.</div>
+        <summary>Good to know</summary>
+        <div class="acc-body">Materials are provided. Location, dates, and group details are confirmed directly once you reach out.</div>
       </details>
+    </div>
+
+    <div class="w-inquiry" id="inquire">
+      <p class="w-inquiry-label">Send a request for Experience</p>
+      <form class="signup-form" id="workshopInquiryForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="wi-name">Name</label>
+            <input type="text" id="wi-name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="wi-contact">Email or phone</label>
+            <input type="text" id="wi-contact" name="contact" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="wi-message">Group size, dates, or anything else?</label>
+          <textarea id="wi-message" name="message" placeholder="Optional"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send request</button>
+        <p class="form-note">Opens a pre-filled email to odertim.studio@gmail.com, nothing is sent automatically yet.</p>
+      </form>
     </div>
   </div>
 </section>
 
 <section class="contact-strip">
-  <h2>Looking for something close, but not quite this?</h2>
-  <p>Every lamp can be adapted: a different scale, a tinted paper, a custom fitting. Tell us the space and the piece is built around it.</p>
-  <a href="lighting.html?item=Panel%20Floor%20Lamp#inquire" class="btn-solid-light">Get in touch</a>
+  <h2>Not sure which format fits?</h2>
+  <p>Tell us the group, the goal, and roughly when, and we'll point you to the right one.</p>
+  <a href="education.html#signup" class="btn-solid-light">Get in touch</a>
 </section>
 
 <footer>
@@ -201,7 +240,7 @@
   });
 
   const sizeOpts = document.querySelectorAll('.size-opt');
-  const priceEl = document.getElementById('pPrice');
+  const priceEl = document.getElementById('wPrice');
   sizeOpts.forEach(opt => {
     opt.addEventListener('click', () => {
       sizeOpts.forEach(o => o.classList.remove('active'));
@@ -210,6 +249,23 @@
         priceEl.textContent = 'from ₪' + Number(opt.dataset.price).toLocaleString();
       }
     });
+  });
+
+  const inquiryForm = document.getElementById('workshopInquiryForm');
+  inquiryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(inquiryForm);
+    const name = data.get('name') || '';
+    const contact = data.get('contact') || '';
+    const message = data.get('message') || '';
+    const subject = encodeURIComponent('Workshop request: Experience');
+    const body = encodeURIComponent(
+      'Name: ' + name + '\n' +
+      'Email/phone: ' + contact + '\n' +
+      'Format: Experience\n\n' +
+      'Message:\n' + message
+    );
+    window.location.href = 'mailto:odertim.studio@gmail.com?subject=' + subject + '&body=' + body;
   });
 </script>
 

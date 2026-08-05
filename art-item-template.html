@@ -56,7 +56,8 @@
   .product-tag.tag-sold { background: var(--black); color: var(--white); }
   .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
   .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 12px; }
-  .product-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 20px; }
+  .product-title { font-size: clamp(2rem, 3.4vw, 2.8rem); margin-bottom: 14px; }
+  .product-price { font-size: 20px; color: var(--accent); font-family: 'EB Garamond', serif; margin-bottom: 20px; }
   .product-desc { color: var(--text-secondary); font-size: 16px; line-height: 1.75; max-width: 46ch; margin-bottom: 28px; }
   .product-details-list { font-size: 13px; color: var(--text-secondary); line-height: 1.9; margin-bottom: 36px; border-top: 1px solid var(--light); padding-top: 16px; max-width: 46ch; }
   .product-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -117,9 +118,10 @@
     <img src="{{IMAGE}}" alt="{{ALT}}">
   </div>
   <div class="product-detail">
-    <span class="product-tag {{TAG_CLASS}}">{{TAG_LABEL}}</span>
+    {{TAG_HTML}}
     <p class="product-type">{{TYPE}}</p>
     <h1 class="product-title">{{NAME}}</h1>
+    {{PRICE_BLOCK}}
     <p class="product-desc">{{DESC}}</p>
     <p class="product-details-list">{{DETAILS}}</p>
     <div class="product-ctas">

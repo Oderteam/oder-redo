@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Education — ODER × ReDo</title>
-<meta name="description" content="Paper pleating workshops by ODER × ReDo: courses, private sessions, and open drop-in workshops. Based in Israel.">
+<meta name="description" content="Paper pleating education by ODER × ReDo: the Academy course, private Experience sessions, and Open Workshops. Based in Israel.">
 <link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
 <link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,18 +77,24 @@
 
   /* ============ FORMATS ============ */
   .formats-section { padding: 20px 52px 40px; }
-  .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .format-card {
-    display: flex; flex-direction: column; gap: 18px;
-    border-top: 2px solid var(--black); padding-top: 22px;
+  .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+  .format-card { display: flex; flex-direction: column; }
+  .format-image { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .format-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .format-card:hover .format-image img { transform: scale(1.05); }
+  .format-status-tag {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 12px; background: var(--taupe); color: var(--white);
   }
-  .format-image { aspect-ratio: 4/3; overflow: hidden; background: #d3cec6; }
-  .format-image img { width: 100%; height: 100%; object-fit: cover; }
-  .format-number { font-size: 11px; letter-spacing: 0.2em; color: var(--accent); }
-  .format-title { font-size: 24px; }
-  .format-badge { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: #f0ece5; padding: 6px 12px; width: fit-content; }
-  .format-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-  .format-meta { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+  .format-info { padding-top: 16px; }
+  .info-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .info-left { display: flex; flex-direction: column; gap: 4px; }
+  .info-right { flex-shrink: 0; text-align: right; }
+  .format-name { font-size: 20px; }
+  .format-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
+  .format-price { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary); white-space: nowrap; }
+  .format-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-top: 10px; }
 
   /* ============ SIGNUP ============ */
   .signup-section {
@@ -160,6 +166,10 @@
     .form-row { grid-template-columns: 1fr; }
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
   }
+
+  @media (max-width: 560px) {
+    .formats-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -179,37 +189,52 @@
 <section class="page-hero">
   <p class="page-eyebrow">Education</p>
   <h1 class="page-title">Learn to fold, in the studio.</h1>
-  <p class="page-sub">Three ways to learn pleating. Take the course, book a private session for a group of any size, or drop into an open workshop. Every format ends with a piece you made yourself.</p>
+  <p class="page-sub">Paper pleating taught the way we use it ourselves: as a method for turning a flat sheet into a considered form. Three ways in, from an academic course to a single afternoon, each one ending with a piece you folded yourself.</p>
 </section>
 
 <section class="formats-section">
   <div class="formats-grid">
 
-    <a href="workshop-art-and-design-in-paper-folding.html" class="format-card">
+    <a href="workshop-academy.html" class="format-card">
       <div class="format-image"><img src="images/workshop-hands-folding-01.jpg" alt="Hands shaping a pleated paper spiral at a studio worktable, with a fold pattern sketched on paper behind" loading="lazy"></div>
-      <span class="format-number">01</span>
-      <h3 class="format-title">Art and Design in Paper Folding</h3>
-      <span class="format-badge">Academic Course · For Schools &amp; Institutions</span>
-      <p class="format-desc">A full course held in the studio, built around the pleating technique from first principles: scoring, folding, and shaping a finished piece over several sessions. Structured for schools and academies, ending with a piece you can read and repeat on your own.</p>
-      <span class="format-meta">Small groups · Multi-session</span>
+      <div class="format-info">
+        <div class="info-top">
+          <div class="info-left">
+            <span class="format-name">Academy</span>
+            <span class="format-type">Classes and Courses</span>
+          </div>
+          <div class="info-right"><span class="format-price">Price on request</span></div>
+        </div>
+        <p class="format-desc">Paper as a method: how folding turns a flat sheet into volume, and how that logic carries into design, art, and technology. Short or long track, same course, different depth.</p>
+      </div>
     </a>
 
-    <a href="workshop-private-sessions.html" class="format-card">
+    <a href="workshop-experience.html" class="format-card">
       <div class="format-image"><img src="images/workshop-3.jpg" alt="Group folding paper together at a workshop table" loading="lazy"></div>
-      <span class="format-number">02</span>
-      <h3 class="format-title">Private Sessions</h3>
-      <span class="format-badge">For Corporate Workshops &amp; Private Events</span>
-      <p class="format-desc">A session booked privately for a group of any size, from a corporate team of thirty to four people around a table at home. The pace, project, and location are set around the group.</p>
-      <span class="format-meta">4–30 people · Private booking</span>
+      <div class="format-info">
+        <div class="info-top">
+          <div class="info-left">
+            <span class="format-name">Experience</span>
+            <span class="format-type">Private and Corporate</span>
+          </div>
+          <div class="info-right"><span class="format-price">Price on request</span></div>
+        </div>
+        <p class="format-desc">A private session booked just for your group, building one object from a set template. No skill needed, just time to make something together and take it home.</p>
+      </div>
     </a>
 
     <a href="workshop-open-workshop.html" class="format-card">
       <div class="format-image"><img src="images/workshop-4.jpg" alt="Hands folding a pleat pattern at an open workshop" loading="lazy"></div>
-      <span class="format-number">03</span>
-      <h3 class="format-title">Open Workshop</h3>
-      <span class="format-badge">Standard Open Workshop</span>
-      <p class="format-desc">A single drop-in session at a date and place set by the studio. Open to anyone, no experience needed, just an afternoon to learn the fold and leave with something made by hand.</p>
-      <span class="format-meta">Open signup · Single session</span>
+      <div class="format-info">
+        <div class="info-top">
+          <div class="info-left">
+            <span class="format-name">Open Workshop</span>
+            <span class="format-type">Open Enrollment</span>
+          </div>
+          <div class="info-right"><span class="format-price">from ₪350</span></div>
+        </div>
+        <p class="format-desc">Learn the technique, choose from three shapes, and leave time to personalize the piece. We cover grid folding and bi-pleat folding, the two techniques that shape the form.</p>
+      </div>
     </a>
 
   </div>
@@ -217,9 +242,9 @@
 
 <section class="signup-section" id="signup">
   <div>
-    <p class="signup-eyebrow">Book a workshop</p>
-    <h2 class="signup-title">Tell us what you're looking for.</h2>
-    <p class="signup-body">
+    <p class="signup-eyebrow" id="signupEyebrow">Book a workshop</p>
+    <h2 class="signup-title" id="signupTitle">Tell us what you're looking for.</h2>
+    <p class="signup-body" id="signupBody">
       Share your details below and which format fits. We reply directly to set a date, and to answer anything about group size, materials, or location.
     </p>
   </div>
@@ -239,13 +264,13 @@
     <div class="form-field">
       <label>Which format?</label>
       <div class="form-radio-group">
-        <label><input type="radio" name="format" value="Art and Design in Paper Folding" checked> Art and Design in Paper Folding</label>
-        <label><input type="radio" name="format" value="Private Sessions"> Private Sessions</label>
+        <label><input type="radio" name="format" value="Academy" checked> Academy</label>
+        <label><input type="radio" name="format" value="Experience"> Experience</label>
         <label><input type="radio" name="format" value="Open Workshop"> Open Workshop</label>
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="form-row" id="sizeDatesRow">
       <div class="form-field">
         <label for="wf-size">Group size</label>
         <input type="text" id="wf-size" name="size" placeholder="e.g. 1, 6, 20">
@@ -257,12 +282,12 @@
     </div>
 
     <div class="form-field">
-      <label for="wf-message">What are you hoping to make or learn?</label>
+      <label for="wf-message" id="wfMessageLabel">What are you hoping to make or learn?</label>
       <textarea id="wf-message" name="message"></textarea>
     </div>
 
-    <button type="submit" class="form-submit">Send request</button>
-    <p class="form-note">Opens a pre-filled email to odertim.studio@gmail.com — nothing is sent automatically yet.</p>
+    <button type="submit" class="form-submit" id="formSubmit">Send request</button>
+    <p class="form-note">Opens a pre-filled email to odertim.studio@gmail.com, nothing is sent automatically yet.</p>
   </form>
 </section>
 
@@ -288,6 +313,18 @@
     if (match) match.checked = true;
   }
 
+  // Waitlist mode: arrives via ?mode=waitlist from a Coming Soon workshop page.
+  // Shows a shorter, lower-friction form instead of the full booking flow.
+  const isWaitlist = params.get('mode') === 'waitlist';
+  if (isWaitlist) {
+    document.getElementById('signupEyebrow').textContent = 'Join the waitlist';
+    document.getElementById('signupTitle').textContent = "We'll let you know.";
+    document.getElementById('signupBody').textContent = "This format isn't open for booking yet. Leave your details and we'll reach out as soon as it's ready.";
+    document.getElementById('sizeDatesRow').style.display = 'none';
+    document.getElementById('wfMessageLabel').textContent = 'Anything you want us to know?';
+    document.getElementById('formSubmit').textContent = 'Join the waitlist';
+  }
+
   const form = document.getElementById('workshopForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -298,15 +335,19 @@
     const size = data.get('size') || '';
     const dates = data.get('dates') || '';
     const message = data.get('message') || '';
-    const subject = encodeURIComponent('Workshop request: ' + format);
-    const body = encodeURIComponent(
-      'Name: ' + name + '\n' +
-      'Email/phone: ' + contact + '\n' +
-      'Format: ' + format + '\n' +
-      'Group size: ' + size + '\n' +
-      'Preferred dates: ' + dates + '\n\n' +
-      'Message:\n' + message
-    );
+    const subjectPrefix = isWaitlist ? 'Waitlist: ' : 'Workshop request: ';
+    const subject = encodeURIComponent(subjectPrefix + format);
+    const bodyLines = [
+      'Name: ' + name,
+      'Email/phone: ' + contact,
+      'Format: ' + format,
+    ];
+    if (!isWaitlist) {
+      bodyLines.push('Group size: ' + size);
+      bodyLines.push('Preferred dates: ' + dates);
+    }
+    bodyLines.push('', 'Message:', message);
+    const body = encodeURIComponent(bodyLines.join('\n'));
     window.location.href = 'mailto:odertim.studio@gmail.com?subject=' + subject + '&body=' + body;
   });
 </script>

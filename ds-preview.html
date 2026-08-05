@@ -85,7 +85,7 @@
     letter-spacing: 0.16em; text-transform: uppercase;
     display: flex; align-items: center;
   }
-  .nav-logo img { height: 104px; width: auto; display: block; }
+  .nav-logo img { height: 64px; width: auto; display: block; }
 
   .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
   .nav-links a {
@@ -178,18 +178,14 @@
   .section-head h2 { font-size: 34px; }
   .section-head p { color: var(--text-secondary); font-weight: 300; font-size: 14px; max-width: 34ch; }
 
-  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .work-item { position: relative; overflow: hidden; aspect-ratio: 4/5; }
-  .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-  .work-item:hover img { transform: scale(1.05); }
-  .work-caption {
-    position: absolute; left: 0; right: 0; bottom: 0; padding: 16px;
-    background: linear-gradient(to top, rgba(15,16,19,0.78), transparent);
-    color: var(--white); opacity: 0; transition: opacity 0.3s ease;
-  }
-  .work-item:hover .work-caption { opacity: 1; }
-  .work-caption-title { font-family: 'EB Garamond', serif; font-size: 15px; display: block; }
-  .work-caption-cat { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; }
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 28px; }
+  .work-item { display: flex; flex-direction: column; cursor: pointer; }
+  .work-image { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #d3cec6; }
+  .work-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .work-item:hover .work-image img { transform: scale(1.05); }
+  .work-info { padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .work-title { font-family: 'EB Garamond', serif; font-size: 20px; }
+  .work-cat { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
 
   /* ============ ABOUT ============ */
   .about-section {
@@ -289,13 +285,17 @@
     .category-card:last-child { border-bottom: none; }
 
     .work-section { padding: 20px 24px 64px; }
-    .work-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
 
     .about-section { grid-template-columns: 1fr; padding: 56px 24px; gap: 32px; }
 
     .contact-section { grid-template-columns: 1fr; padding: 56px 24px; gap: 40px; }
 
     footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+  }
+
+  @media (max-width: 560px) {
+    .work-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -373,30 +373,30 @@
     <h2>Selected Work</h2>
   </div>
   <div class="work-grid">
-    <div class="work-item reveal">
-      <img src="images/lighting-triple-pendant-01.jpg" alt="Three pleated pendant lamps above a dining table" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Triple Pendant, Dining</span><span class="work-caption-cat">Lighting</span></div>
-    </div>
-    <div class="work-item reveal reveal-delay-1">
-      <img src="images/sculpture-wing-01.jpg" alt="Wing-shaped pleated paper wall sculpture" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Wing Study, Wall</span><span class="work-caption-cat">Sculpture</span></div>
-    </div>
-    <div class="work-item reveal reveal-delay-2">
-      <img src="images/installation-storefront-chandelier-01.jpg" alt="Large pleated paper chandelier installation in a storefront window" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Storefront Chandelier</span><span class="work-caption-cat">Installation</span></div>
-    </div>
-    <div class="work-item reveal">
-      <img src="images/sculpture-totem-trio-01.jpg" alt="Three tall pleated paper totem sculptures with brass rings" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Paper Totems, Trio</span><span class="work-caption-cat">Sculpture</span></div>
-    </div>
-    <div class="work-item reveal reveal-delay-1">
-      <img src="images/lighting-cone-pendant-01.jpg" alt="Wide saucer pendant lamp over a round table" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Saucer Pendant</span><span class="work-caption-cat">Lighting</span></div>
-    </div>
-    <div class="work-item reveal reveal-delay-2">
-      <img src="images/cone-mirror-wall-01.jpg" alt="Cone-shaped pleated wall lamp with mirrored centre, glowing" loading="lazy">
-      <div class="work-caption"><span class="work-caption-title">Cone Wall Lamp</span><span class="work-caption-cat">Lighting</span></div>
-    </div>
+    <a href="lighting.html" class="work-item reveal">
+      <div class="work-image"><img src="images/lighting-triple-pendant-01.jpg" alt="Three pleated cone pendant lamps above a dining table" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Triple Pendant</span><span class="work-cat">Lighting</span></div>
+    </a>
+    <a href="item-wing-study.html" class="work-item reveal reveal-delay-1">
+      <div class="work-image"><img src="images/sculpture-wing-01.jpg" alt="Wing-shaped pleated paper wall sculpture" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Wing Study</span><span class="work-cat">Sculpture</span></div>
+    </a>
+    <a href="item-fashion-window.html" class="work-item reveal reveal-delay-2">
+      <div class="work-image"><img src="images/installation-fashion-window-01.jpg" alt="Sweeping pleated paper installation in a fashion boutique window" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Fashion Window</span><span class="work-cat">Installation</span></div>
+    </a>
+    <a href="item-totems-trio.html" class="work-item reveal">
+      <div class="work-image"><img src="images/sculpture-totem-trio-01.jpg" alt="Three tall pleated paper totem sculptures with brass rings" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Totems Trio</span><span class="work-cat">Sculpture</span></div>
+    </a>
+    <a href="product-panel-floor-lamp.html" class="work-item reveal reveal-delay-1">
+      <div class="work-image"><img src="images/lighting-panel-floor-01.jpg" alt="Leaning oak panel floor lamp with a round pleated shade, in a lobby" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Panel Floor Lamp</span><span class="work-cat">Lighting</span></div>
+    </a>
+    <a href="product-cone-wall-sconce.html" class="work-item reveal reveal-delay-2">
+      <div class="work-image"><img src="images/cone-mirror-wall-01.jpg" alt="Cone-shaped pleated wall lamp with mirrored centre, glowing" loading="lazy"></div>
+      <div class="work-info"><span class="work-title">Cone Wall Sconce</span><span class="work-cat">Lighting</span></div>
+    </a>
   </div>
 </section>
 

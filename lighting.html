@@ -74,10 +74,6 @@
   }
   .page-title { font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height: 1.1; margin-bottom: 20px; }
   .page-sub { color: var(--text-secondary); font-size: 16px; line-height: 1.7; max-width: 56ch; }
-  .page-note {
-    margin-top: 24px; padding: 16px 20px; background: #f0ece5; border-left: 2px solid var(--accent);
-    font-size: 14px; color: var(--text-secondary); max-width: 56ch; line-height: 1.6;
-  }
 
   /* ============ PRODUCT GRID ============ */
   .product-section { padding: 20px 52px 120px; }
@@ -93,12 +89,14 @@
   }
   .product-tag.tag-sold { background: var(--black); color: var(--white); }
   .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
-  .product-info { padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+  .product-info { padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .info-left { display: flex; flex-direction: column; gap: 4px; }
+  .info-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; flex-shrink: 0; }
   .product-name { font-size: 20px; }
   .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
-  .product-status { font-size: 13px; color: var(--text-secondary); margin-top: 6px; }
-  .status-link { border-bottom: 1px solid var(--black); }
-  .product-card:hover .status-link { color: var(--accent); border-color: var(--accent); }
+  .product-price, .status-link { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary); white-space: nowrap; }
+  .status-link { color: var(--black); }
+  .product-card:hover .status-link { color: var(--accent); }
 
   /* ============ INQUIRY FORM ============ */
   .signup-section {
@@ -185,117 +183,145 @@
 <section class="page-hero">
   <p class="page-eyebrow">Lighting</p>
   <h1 class="page-title">Pendants, lamps, and sconces.</h1>
-  <p class="page-sub">Nine forms, shown here as a starting catalogue. Every lamp is made to order and can be sized, tinted, or adapted to fit the brief. The piece is built around what the space needs, not the other way around.</p>
-  <p class="page-note">Made to order: production time is quoted per piece once size, finish, and quantity are confirmed. Get in touch with the model name to start.</p>
+  <p class="page-sub">Pendants, lamps, and sconces built from pleated paper, each shade catching the light and softening it. The same fold shapes our sculptures and installations, sized and tinted to fit the room it's going into.</p>
 </section>
 
 <section class="product-section">
   <div class="product-grid">
     <a href="product-panel-wall-sconce.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/lighting-panel-wall-01.jpg" alt="Round pleated ball wall sconce mounted on a tall oak panel" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Panel Wall Sconce</span>
-        <span class="product-type">Wall</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Panel Wall Sconce</span>
+          <span class="product-type">Wall</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪3,600</span>
+        </div>
       </div>
     </a>
 
     <a href="product-panel-floor-lamp.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/lighting-panel-floor-01.jpg" alt="Leaning oak panel floor lamp with a round pleated shade, in a lobby" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Panel Floor Lamp</span>
-        <span class="product-type">Floor</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Panel Floor Lamp</span>
+          <span class="product-type">Floor</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪3,600</span>
+        </div>
       </div>
     </a>
 
-    <a href="product-angled-table-lamp.html" class="product-card">
+    <a href="product-angled-floor-lamp.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
-        <img src="images/lighting-angled-table-01.jpg" alt="Angled wood and brass table lamp with a pleated cone shade on a terrazzo base" loading="lazy">
+        <img src="images/lighting-angled-table-01.jpg" alt="Angled wood and brass floor lamp with a pleated cone shade on a terrazzo base" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Angled Table Lamp</span>
-        <span class="product-type">Table</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Angled Floor Lamp</span>
+          <span class="product-type">Floor</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪4,800</span>
+        </div>
       </div>
     </a>
 
     <a href="product-bell-pendant.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/lighting-bell-pendant-01.jpg" alt="Bell-shaped pleated pendant lamp over a dining table" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Bell Pendant</span>
-        <span class="product-type">Pendant</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Bell Pendant</span>
+          <span class="product-type">Pendant</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪2,700</span>
+        </div>
       </div>
     </a>
 
-    <a href="product-bell-table-lamp.html" class="product-card">
+    <a href="product-cone-table-lamp.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-sold">Sold</span>
-        <img src="images/lighting-bell-table-01.jpg" alt="Bell-shaped pleated table lamp on a bedside table" loading="lazy">
+        <span class="product-tag tag-sold">Sold Out</span>
+        <img src="images/lighting-cone-table-01.jpg" alt="Wide pleated cone-shaped table lamp with a black ring collar" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Bell Table Lamp</span>
-        <span class="product-type">Table</span>
-        <p class="product-status">Sold: <span class="status-link">ask about a remake</span></p>
+        <div class="info-left">
+          <span class="product-name">Cone Table Lamp</span>
+          <span class="product-type">Table</span>
+        </div>
+        <div class="info-right">
+          <span class="status-link">Ask about a remake</span>
+        </div>
       </div>
     </a>
 
     <a href="product-cone-wall-sconce.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/cone-mirror-wall-01.jpg" alt="Cone-shaped pleated wall lamp with mirrored centre, glowing" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Cone Wall Sconce</span>
-        <span class="product-type">Wall</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Cone Wall Sconce</span>
+          <span class="product-type">Wall</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪1,200</span>
+        </div>
       </div>
     </a>
 
     <a href="product-halo-wall-sconce.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-sold">Sold</span>
+        <span class="product-tag tag-sold">Sold Out</span>
         <img src="images/halo-wall-01.jpg" alt="Flat pleated sunburst wall sconce with brass centre, warm glow" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Halo Wall Sconce</span>
-        <span class="product-type">Wall</span>
-        <p class="product-status">Sold: <span class="status-link">ask about a remake</span></p>
+        <div class="info-left">
+          <span class="product-name">Halo Wall Sconce</span>
+          <span class="product-type">Wall</span>
+        </div>
+        <div class="info-right">
+          <span class="status-link">Ask about a remake</span>
+        </div>
       </div>
     </a>
 
     <a href="product-halo-wall-sconce-mirror.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/halo-wall-mirror-02.jpg" alt="Flat pleated sunburst wall sconce with a convex mirror centre" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Halo Wall Sconce, Mirror</span>
-        <span class="product-type">Wall</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Halo Wall Sconce, Mirror</span>
+          <span class="product-type">Wall</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪1,200</span>
+        </div>
       </div>
     </a>
 
     <a href="product-cone-pendant-large.html" class="product-card">
       <div class="product-image">
-        <span class="product-tag tag-order">Available</span>
         <img src="images/lamp-cone-pendant-l.jpg" alt="Large flat pleated cone pendant lamp with visible bulb" loading="lazy">
       </div>
       <div class="product-info">
-        <span class="product-name">Cone Pendant, Large</span>
-        <span class="product-type">Pendant</span>
-        <p class="product-status">Made to order: <span class="status-link">inquire</span></p>
+        <div class="info-left">
+          <span class="product-name">Cone Pendant, Large</span>
+          <span class="product-type">Pendant</span>
+        </div>
+        <div class="info-right">
+          <span class="product-price">from ₪1,800</span>
+        </div>
       </div>
     </a>
 
@@ -326,9 +352,9 @@
       <select id="lf-item" name="item">
         <option value="Panel Wall Sconce">Panel Wall Sconce</option>
         <option value="Panel Floor Lamp">Panel Floor Lamp</option>
-        <option value="Angled Table Lamp">Angled Table Lamp</option>
+        <option value="Angled Floor Lamp">Angled Floor Lamp</option>
         <option value="Bell Pendant">Bell Pendant</option>
-        <option value="Bell Table Lamp">Bell Table Lamp</option>
+        <option value="Cone Table Lamp">Cone Table Lamp</option>
         <option value="Cone Wall Sconce">Cone Wall Sconce</option>
         <option value="Halo Wall Sconce">Halo Wall Sconce</option>
         <option value="Halo Wall Sconce, Mirror">Halo Wall Sconce, Mirror</option>
