@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lighting — ODER × ReDo</title>
-<meta name="description" content="Handmade pleated-paper pendants, table lamps and wall sconces by ODER × ReDo. Each piece made to order.">
-<link rel="canonical" href="https://www.oder-redo.com/lighting">
+<title>Art &amp; Installations — ODER × ReDo</title>
+<meta name="description" content="Handmade pleated-paper sculptures, framed pieces, and large-scale installations by ODER × ReDo. Made to order or built for a space.">
+<link rel="canonical" href="https://www.oder-redo.com/art-installations">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lighting — ODER × ReDo">
-<meta property="og:description" content="Handmade pleated-paper pendants, table lamps and wall sconces by ODER × ReDo. Each piece made to order.">
-<meta property="og:image" content="https://www.oder-redo.com/images/lighting-panel-wall-01.jpg">
-<meta property="og:url" content="https://www.oder-redo.com/lighting">
+<meta property="og:title" content="Art &amp; Installations — ODER × ReDo">
+<meta property="og:description" content="Handmade pleated-paper sculptures, framed pieces, and large-scale installations by ODER × ReDo. Made to order or built for a space.">
+<meta property="og:image" content="https://www.oder-redo.com/images/sculpture-wing-01.jpg">
+<meta property="og:url" content="https://www.oder-redo.com/art-installations">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Lighting — ODER × ReDo">
-<meta name="twitter:description" content="Handmade pleated-paper pendants, table lamps and wall sconces by ODER × ReDo. Each piece made to order.">
-<meta name="twitter:image" content="https://www.oder-redo.com/images/lighting-panel-wall-01.jpg">
+<meta name="twitter:title" content="Art &amp; Installations — ODER × ReDo">
+<meta name="twitter:description" content="Handmade pleated-paper sculptures, framed pieces, and large-scale installations by ODER × ReDo. Made to order or built for a space.">
+<meta name="twitter:image" content="https://www.oder-redo.com/images/sculpture-wing-01.jpg">
 <link rel="icon" type="image/png" href="images/logo-badge-circle-black.png">
 <link rel="apple-touch-icon" href="images/logo-badge-circle-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,11 +101,11 @@
   .product-tag.tag-order { background: var(--white); color: var(--black); border: 1px solid var(--black); }
   .product-info { padding-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 6px 16px; }
   .info-left { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .info-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; text-align: right; flex-shrink: 0; }
+  .info-right { flex-shrink: 0; }
   .product-name { font-size: 20px; }
   .product-type { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
-  .product-price, .status-link { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary); white-space: nowrap; }
-  .status-link { color: var(--black); }
+  .product-price { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary); white-space: nowrap; }
+  .status-link { font-family: 'Josefin Sans', sans-serif; font-size: 13px; letter-spacing: 0.04em; color: var(--black); white-space: nowrap; }
   .product-card:hover .status-link { color: var(--accent); }
 
   /* ============ INQUIRY FORM ============ */
@@ -183,155 +183,142 @@
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="/#work">Home</a></li>
-    <li><a href="lighting" class="is-active">Lighting</a></li>
-    <li><a href="art-installations">Art &amp; Installations</a></li>
+    <li><a href="lighting">Lighting</a></li>
+    <li><a href="art-installations" class="is-active">Art &amp; Installations</a></li>
     <li><a href="education">Education</a></li>
     <li><a href="/#contact" class="nav-cta">Get in touch</a></li>
   </ul>
 </nav>
 
 <section class="page-hero">
-  <p class="page-eyebrow">Lighting</p>
-  <h1 class="page-title">Pendants, lamps, and sconces.</h1>
-  <p class="page-sub">Pendants, lamps, and sconces built from pleated paper, each shade catching the light and softening it. The same fold shapes our sculptures and installations, sized and tinted to fit the room it's going into.</p>
+  <p class="page-eyebrow">Art &amp; Installations</p>
+  <h1 class="page-title">Sculpture and space.</h1>
+  <p class="page-sub">Sculptures and installations built from the same fold as our lighting, scaled into freestanding forms and pieces made for a specific wall, window, or ceiling. Framed studies suit a home; larger installations are built to measure for retail windows, ceilings, and atriums.</p>
 </section>
 
 <section class="product-section">
-  <div class="product-grid">
-    <a href="product-panel-wall-sconce" class="product-card">
+  <div class="product-grid" id="productGrid">
+
+    <a href="item-wing-study" class="product-card" data-kind="sculpture">
       <div class="product-image">
-        <img src="images/lighting-panel-wall-01.jpg" alt="Round pleated ball wall sconce mounted on a tall oak panel" loading="lazy">
+        <img src="images/sculpture-wing-01.jpg" alt="Wing-shaped pleated paper wall sculpture" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Panel Wall Sconce</span>
-          <span class="product-type">Wall</span>
+          <span class="product-name">Wing Study</span>
+          <span class="product-type">Wall sculpture</span>
         </div>
-        <div class="info-right">
-          <span class="product-price">from ₪3,600</span>
-        </div>
+        <div class="info-right"><span class="product-price">from ₪2,300</span></div>
       </div>
     </a>
 
-    <a href="product-panel-floor-lamp" class="product-card">
+    <a href="item-totems-trio" class="product-card" data-kind="sculpture">
       <div class="product-image">
-        <img src="images/lighting-panel-floor-01.jpg" alt="Leaning oak panel floor lamp with a round pleated shade, in a lobby" loading="lazy">
+        <img src="images/sculpture-totem-trio-01.jpg" alt="Three tall pleated paper totem sculptures with brass rings, in varying heights" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Panel Floor Lamp</span>
-          <span class="product-type">Floor</span>
+          <span class="product-name">Totems Trio</span>
+          <span class="product-type">Freestanding, set</span>
         </div>
-        <div class="info-right">
-          <span class="product-price">from ₪3,600</span>
-        </div>
+        <div class="info-right"><span class="product-price">from ₪13,300</span></div>
       </div>
     </a>
 
-    <a href="product-angled-floor-lamp" class="product-card">
-      <div class="product-image">
-        <img src="images/lighting-angled-table-01.jpg" alt="Angled wood and brass floor lamp with a pleated cone shade on a terrazzo base" loading="lazy">
-      </div>
-      <div class="product-info">
-        <div class="info-left">
-          <span class="product-name">Angled Floor Lamp</span>
-          <span class="product-type">Floor</span>
-        </div>
-        <div class="info-right">
-          <span class="product-price">from ₪4,800</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="product-bell-pendant" class="product-card">
-      <div class="product-image">
-        <img src="images/lighting-bell-pendant-01.jpg" alt="Bell-shaped pleated pendant lamp over a dining table" loading="lazy">
-      </div>
-      <div class="product-info">
-        <div class="info-left">
-          <span class="product-name">Bell Pendant</span>
-          <span class="product-type">Pendant</span>
-        </div>
-        <div class="info-right">
-          <span class="product-price">from ₪2,700</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="product-cone-table-lamp" class="product-card">
+    <a href="item-nested-vessels" class="product-card" data-kind="sculpture">
       <div class="product-image">
         <span class="product-tag tag-sold">Sold Out</span>
-        <img src="images/lighting-cone-table-01.jpg" alt="Wide pleated cone-shaped table lamp with a black ring collar" loading="lazy">
+        <img src="images/vessel-trio-01.jpg" alt="Nested pleated paper vessels" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Cone Table Lamp</span>
-          <span class="product-type">Table</span>
+          <span class="product-name">Nested Vessels</span>
+          <span class="product-type">Freestanding, set</span>
         </div>
-        <div class="info-right">
-          <span class="status-link">Ask about a remake</span>
-        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
-    <a href="product-cone-wall-sconce" class="product-card">
+    <a href="item-boutique-window" class="product-card" data-kind="installation">
       <div class="product-image">
-        <img src="images/cone-mirror-wall-01.jpg" alt="Cone-shaped pleated wall lamp with mirrored centre, glowing" loading="lazy">
+        <span class="product-tag tag-sold">Completed Project</span>
+        <img src="images/installation-boutique-window-wide-01.jpg" alt="Angular pleated paper installation filling a wide boutique window" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Cone Wall Sconce</span>
-          <span class="product-type">Wall</span>
+          <span class="product-name">Boutique Window</span>
+          <span class="product-type">Retail installation</span>
         </div>
-        <div class="info-right">
-          <span class="product-price">from ₪1,200</span>
-        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
-    <a href="product-halo-wall-sconce" class="product-card">
+    <a href="item-fashion-window" class="product-card" data-kind="installation">
       <div class="product-image">
-        <span class="product-tag tag-sold">Sold Out</span>
-        <img src="images/halo-wall-01.jpg" alt="Flat pleated sunburst wall sconce with brass centre, warm glow" loading="lazy">
+        <span class="product-tag tag-sold">Completed Project</span>
+        <img src="images/installation-fashion-window-01.jpg" alt="Sweeping pleated paper forms around a mannequin in a fashion window" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Halo Wall Sconce</span>
-          <span class="product-type">Wall</span>
+          <span class="product-name">Fashion Window</span>
+          <span class="product-type">Retail installation</span>
         </div>
-        <div class="info-right">
-          <span class="status-link">Ask about a remake</span>
-        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
-    <a href="product-halo-wall-sconce-mirror" class="product-card">
+    <a href="item-gallery-wall" class="product-card" data-kind="installation">
       <div class="product-image">
-        <img src="images/halo-wall-mirror-02.jpg" alt="Flat pleated sunburst wall sconce with a convex mirror centre" loading="lazy">
+        <span class="product-tag tag-sold">Completed Project</span>
+        <img src="images/installation-gallery-01.jpg" alt="Large spiral pleated paper wall installation in a gallery" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Halo Wall Sconce, Mirror</span>
-          <span class="product-type">Wall</span>
+          <span class="product-name">Gallery Wall</span>
+          <span class="product-type">Wall installation</span>
         </div>
-        <div class="info-right">
-          <span class="product-price">from ₪1,200</span>
-        </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
       </div>
     </a>
 
-    <a href="product-cone-pendant-large" class="product-card">
+    <a href="item-restaurant-ceiling" class="product-card" data-kind="installation">
       <div class="product-image">
-        <img src="images/lamp-cone-pendant-l.jpg" alt="Large flat pleated cone pendant lamp with visible bulb" loading="lazy">
+        <span class="product-tag tag-sold">Completed Project</span>
+        <img src="images/installation-restaurant-ceiling-01.jpg" alt="Flowing pleated paper ceiling installation above a restaurant dining room" loading="lazy">
       </div>
       <div class="product-info">
         <div class="info-left">
-          <span class="product-name">Cone Pendant, Large</span>
-          <span class="product-type">Pendant</span>
+          <span class="product-name">Restaurant Ceiling</span>
+          <span class="product-type">Ceiling installation</span>
         </div>
-        <div class="info-right">
-          <span class="product-price">from ₪1,800</span>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
+      </div>
+    </a>
+
+    <a href="item-atrium-in-flight" class="product-card" data-kind="installation">
+      <div class="product-image">
+        <span class="product-tag tag-sold">Completed Project</span>
+        <img src="images/installation-atrium-birds-01.jpg" alt="A flock of pleated paper forms suspended in a mall atrium" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="info-left">
+          <span class="product-name">Atrium in Flight</span>
+          <span class="product-type">Atrium installation</span>
         </div>
+        <div class="info-right"><span class="status-link">Ask about a similar piece</span></div>
+      </div>
+    </a>
+
+    <a href="item-storefront-chandelier" class="product-card" data-kind="installation">
+      <div class="product-image">
+        <img src="images/installation-storefront-chandelier-01.jpg" alt="Large pleated paper chandelier installation in a storefront window" loading="lazy">
+      </div>
+      <div class="product-info">
+        <div class="info-left">
+          <span class="product-name">Storefront Chandelier</span>
+          <span class="product-type">Retail installation</span>
+        </div>
+        <div class="info-right"><span class="product-price">from ₪4,800</span></div>
       </div>
     </a>
 
@@ -340,42 +327,46 @@
 
 <section class="signup-section" id="inquire">
   <div>
-    <p class="signup-eyebrow">Ask about a lamp</p>
-    <h2 class="signup-title">Need a different size or finish?</h2>
-    <p class="signup-body">Every lamp on this page can be adapted: a different scale, a tinted paper, a custom fitting. Pick the piece you have in mind and leave your details. We reply directly.</p>
+    <p class="signup-eyebrow">Have a space in mind?</p>
+    <h2 class="signup-title">Tell us about it.</h2>
+    <p class="signup-body">Sculptures ship anywhere; installations are built on-site. Pick the piece closest to what you have in mind, or tell us about your space, and leave your details. We reply directly.</p>
   </div>
 
-  <form class="signup-form" id="lightingForm">
+  <form class="signup-form" id="artForm">
     <div class="form-row">
       <div class="form-field">
-        <label for="lf-name">Name</label>
-        <input type="text" id="lf-name" name="name" required>
+        <label for="af-name">Name</label>
+        <input type="text" id="af-name" name="name" required>
       </div>
       <div class="form-field">
-        <label for="lf-contact">Email or phone</label>
-        <input type="text" id="lf-contact" name="contact" required>
+        <label for="af-contact">Email or phone</label>
+        <input type="text" id="af-contact" name="contact" required>
       </div>
     </div>
 
     <div class="form-field">
-      <label for="lf-item">Which lamp?</label>
-      <select id="lf-item" name="item">
-        <option value="Panel Wall Sconce">Panel Wall Sconce</option>
-        <option value="Panel Floor Lamp">Panel Floor Lamp</option>
-        <option value="Angled Floor Lamp">Angled Floor Lamp</option>
-        <option value="Bell Pendant">Bell Pendant</option>
-        <option value="Cone Table Lamp">Cone Table Lamp</option>
-        <option value="Cone Wall Sconce">Cone Wall Sconce</option>
-        <option value="Halo Wall Sconce">Halo Wall Sconce</option>
-        <option value="Halo Wall Sconce, Mirror">Halo Wall Sconce, Mirror</option>
-        <option value="Cone Pendant, Large">Cone Pendant, Large</option>
-        <option value="Not sure yet">Not sure yet, general question</option>
+      <label for="af-item">Which piece?</label>
+      <select id="af-item" name="item">
+        <optgroup label="Sculptures">
+          <option value="Wing Study">Wing Study</option>
+          <option value="Totems Trio">Totems Trio</option>
+          <option value="Nested Vessels">Nested Vessels</option>
+        </optgroup>
+        <optgroup label="Installations">
+          <option value="Boutique Window">Boutique Window</option>
+          <option value="Fashion Window">Fashion Window</option>
+          <option value="Gallery Wall">Gallery Wall</option>
+          <option value="Restaurant Ceiling">Restaurant Ceiling</option>
+          <option value="Atrium in Flight">Atrium in Flight</option>
+          <option value="Storefront Chandelier">Storefront Chandelier</option>
+        </optgroup>
+        <option value="Not sure yet">Not sure yet, tell us about the space</option>
       </select>
     </div>
 
     <div class="form-field">
-      <label for="lf-message">Anything else?</label>
-      <textarea id="lf-message" name="message" placeholder="Size, finish, room, timeline..."></textarea>
+      <label for="af-message">Tell us about the space</label>
+      <textarea id="af-message" name="message" placeholder="Room, wall, window, timeline..."></textarea>
     </div>
 
     <button type="submit" class="form-submit">Send inquiry</button>
@@ -397,33 +388,34 @@
     document.body.classList.toggle('nav-open');
   });
 
-  // Pre-select the lamp if it arrived via ?item=... from a product page
-  const lfParams = new URLSearchParams(window.location.search);
-  const lfPreselect = lfParams.get('item');
-  if (lfPreselect) {
-    const lfSelect = document.getElementById('lf-item');
-    if (lfSelect && [...lfSelect.options].some(o => o.value === lfPreselect)) {
-      lfSelect.value = lfPreselect;
+  // Pre-select the piece if it arrived via ?item=... from an item page
+  const afParams = new URLSearchParams(window.location.search);
+  const afPreselect = afParams.get('item');
+  if (afPreselect) {
+    const afSelect = document.getElementById('af-item');
+    if (afSelect && [...afSelect.options].some(o => o.value === afPreselect)) {
+      afSelect.value = afPreselect;
     }
   }
 
-  const lightingForm = document.getElementById('lightingForm');
-  lightingForm.addEventListener('submit', (e) => {
+  const artForm = document.getElementById('artForm');
+  artForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const data = new FormData(lightingForm);
+    const data = new FormData(artForm);
     const name = data.get('name') || '';
     const contact = data.get('contact') || '';
     const item = data.get('item') || '';
     const message = data.get('message') || '';
-    const subject = encodeURIComponent('Lighting inquiry: ' + item);
+    const subject = encodeURIComponent('Art & Installations inquiry: ' + item);
     const body = encodeURIComponent(
       'Name: ' + name + '\n' +
       'Email/phone: ' + contact + '\n' +
-      'Lamp: ' + item + '\n\n' +
+      'Piece: ' + item + '\n\n' +
       'Message:\n' + message
     );
     window.location.href = 'mailto:odertim.studio@gmail.com?subject=' + subject + '&body=' + body;
   });
+
 </script>
 
 </body>
