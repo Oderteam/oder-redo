@@ -153,12 +153,7 @@
     <div class="p-image">
       <img id="pImage" src="images/lighting-angled-table-01.jpg" alt="Angled wood and brass floor lamp with a pleated cone shade on a terrazzo base">
     </div>
-    <div class="p-thumbs">
-      <div class="thumb active"><img src="images/lighting-angled-table-01.jpg" alt=""></div>
-      <div class="thumb placeholder">+</div>
-      <div class="thumb placeholder">+</div>
-      <div class="thumb placeholder">+</div>
-    </div>
+    
   </div>
   <div class="p-detail">
     
@@ -210,6 +205,14 @@
     document.body.classList.toggle('nav-open');
   });
 
+  document.querySelectorAll('.p-thumbs .thumb[data-src]').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.p-thumbs .thumb').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('pImage').src = t.dataset.src;
+    });
+  });
+
   const sizeOpts = document.querySelectorAll('.size-opt');
   const priceEl = document.getElementById('pPrice');
   sizeOpts.forEach(opt => {
@@ -217,7 +220,8 @@
       sizeOpts.forEach(o => o.classList.remove('active'));
       opt.classList.add('active');
       if (priceEl && opt.dataset.price) {
-        priceEl.textContent = 'from ₪' + Number(opt.dataset.price).toLocaleString();
+        const prefix = sizeOpts.length > 1 ? 'from ₪' : '₪';
+        priceEl.textContent = prefix + Number(opt.dataset.price).toLocaleString();
       }
     });
   });
